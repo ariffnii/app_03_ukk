@@ -3,6 +3,7 @@
     data-assets-path="../assets/" data-template="vertical-menu-template-free">
 <head>
     @include('layouts.header')
+    @include('partials.links')
 </head>
 
 <body>

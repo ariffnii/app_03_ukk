@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a href="" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -47,112 +47,58 @@
             </span>
             <span href="" class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
         </a>
-
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-            <i class="bx bx-chevron-left bx-sm align-middle"></i>
-        </a>
     </div>
 
     <div class="menu-inner-shadow"></div>
 
-    <li class="menu-item">
-        <a href="" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Analytics">Dashboard</div>
-        </a>
-    </li>
-    <!-- Produk -->
-    <li class="menu-header small text-uppercase"><span class="menu-header-text">Buku</span></li>
-    <li class="menu-item" class="">
-        <a href="" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-collection"></i>
-            <div data-i18n="Basic">Data Buku</div>
-        </a>
-    </li>
-    <li class="menu-item">
-        <a href="icons-boxicons.html" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-collection"></i>
-            <div data-i18n="Boxicons">Data Layanan</div>
-        </a>
-    </li>
-    <li class="menu-item">
-        <a href="icons-boxicons.html" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-collection"></i>
-            <div data-i18n="Boxicons">Data Berlanganan</div>
-        </a>
-    </li>
-    <!-- Data Transaksi -->
-    <li class="menu-header small text-uppercase">
-        <span class="menu-header-text">Transaksi</span>
-    </li>
-    <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-receipt"></i>
-            <div data-i18n="Layouts">
-                Data Transaksi
-            </div>
-        </a>
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a href="" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
 
-        <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="layouts-without-menu.html" class="menu-link">
-                    <div data-i18n="Without menu">Riwayat Transaksi</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="layouts-without-navbar.html" class="menu-link">
-                    <div data-i18n="Without navbar">Nomor Rekening</div>
-                </a>
-            </li>
-        </ul>
-    </li>
-    <!--Costumer service-->
-    <li class="menu-header small text-uppercase">
-        <span class="menu-header-text">CS</span>
-    </li>
-    <li class="menu-item">
-        <a href="layouts-without-navbar.html" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-confused"></i>
-            <div data-i18n="Without navbar">Pengaduan</div>
-        </a>
-    </li>
-    <!-- Data User -->
-    <li class="menu-header small text-uppercase">
-        <span class="menu-header-text">Data User</span>
-    </li>
-    <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-user"></i>
-            <div data-i18n="Layouts">Data User</div>
-        </a>
-        <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="" class="menu-link">
-                    <div data-i18n="Without menu">Data Pegawai</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="" class="menu-link">
-                    <div data-i18n="Without navbar">Data Pelanggan</div>
-                </a>
-            </li>
-        </ul>
-    </li>
-    {{-- Lain-Lain --}}
-    <li class="menu-header small text-uppercase">
-        <span class="menu-header-text">Misc</span>
-    </li>
-    <li class="menu-item">
-        <a href="" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-map"></i>
-            <div data-i18n="Boxicons">Jangkauan Layanan</div>
-        </a>
-    </li>
-    <li class="menu-item">
-        <a href="icons-boxicons.html" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-cog"></i>
-            <div data-i18n="Boxicons">Settings</div>
-        </a>
-    </li>
+        <!-- Data Buku -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Buku</span>
+        </li>
+        <li class="menu-item">
+            <a href="cards-basic.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-book"></i>
+                <div data-i18n="Basic">Data Buku</div>
+            </a>
+        </li>
+        <!-- Produk -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Peminjaman</span></li>
+        <li class="menu-item">
+            <a href="cards-basic.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-list-ul"></i>
+                <div data-i18n="Basic">Data Peminjaman</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="icons-boxicons.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-receipt"></i>
+                <div data-i18n="Boxicons">Data Struk</div>
+            </a>
+        </li>
+        <!--Costumer service-->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Users</span>
+        </li>
+        <li class="menu-item">
+            <a href="icons-boxicons.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                <div data-i18n="Boxicons">Data Peminjam</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="icons-boxicons.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user-plus"></i>
+                <div data-i18n="Boxicons">Data Pegawai</div>
+            </a>
+        </li>
     </ul>
 </aside>

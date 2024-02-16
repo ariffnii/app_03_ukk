@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('sneat/assets/css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('sneat/assets/css/categories.css') }}">
     <link
         href="https://fonts.googleapis.com/css2?family=Kameron&family=Lato&family=Lexend+Deca&family=Lexend+Exa:wght@500&family=Public+Sans:ital@0;1&display=swap"
         rel="stylesheet">
@@ -51,40 +51,17 @@
     </nav>
     <div id="container1">
         <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <div class="welcome">
-                        <p class="text-light" style="font-size: 32px">Welcome to L-Books</p>
-                        <p class="text-light" style="font-size: 20px">Online Book Borrowing Website <br>Explore for Your
-                            Knowledge</p>
-                    </div>
-                </div>
-                <div class="col-6 d-flex align-items-center justify-content-center">
-                    <div class="image-background"></div>
-                </div>
+            <div class="books">
+                <p style="font-size: 32px" class="text-center text-light">Categories</p>
             </div>
-        </div>
-    </div>
-    <div id="container2">
-        <form>
-            <div class="input-group">
-                <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search...">
-            </div>
-        </form>
-    </div>
-    <div id="container3">
-        <div class="books">
-            <p style="font-size: 32px" class="text-center">Books</p>
-        </div>
-        <div class="container">
-            <div class="row">
+            <div class="row" style="padding-top: 46px;">
+                <p style="font-size: 24px; font-family:'Public Sans', sans-serif; padding-bottom: 41px" class="text-light">Fiksi</p>
                 <div class="col-3">
                     <div class="cover1">
                         <a href="/dashboard">
                             <img src="{{ asset('/sneat/assets/img/cover-books/cover2.png') }}" alt="">
                         </a>
-                        <p id="judul">Judul</p>
+                        <p id="judul" class="text-light">Judul</p>
                     </div>
                 </div>
                 <div class="col-3">
@@ -92,7 +69,7 @@
                         <a href="/dashboard">
                             <img src="{{ asset('/sneat/assets/img/cover-books/cover3.png') }}" alt="">
                         </a>
-                        <p id="judul">Judul</p>
+                        <p id="judul" class="text-light">Judul</p>
                     </div>
                 </div>
                 <div class="col-3">
@@ -100,7 +77,7 @@
                         <a href="/dashboard">
                             <img src="{{ asset('/sneat/assets/img/cover-books/cover1.png') }}" alt="">
                         </a>
-                        <p id="judul">Judul</p>
+                        <p id="judul" class="text-light">Judul</p>
                     </div>
                 </div>
                 <div class="col-3">
@@ -108,17 +85,18 @@
                         <a href="/dashboard">
                             <img src="{{ asset('/sneat/assets/img/cover-books/cover4.png') }}" alt="">
                         </a>
-                        <p id="judul">Judul</p>
+                        <p id="judul" class="text-light">Judul</p>
                     </div>
                 </div>
             </div>
-            <div class="row" style="margin-top: 30px">
+            <div class="row" style="padding-top: 53px; padding-bottom:76px">
+                <p style="font-size: 24px; font-family:'Public Sans', sans-serif; padding-bottom: 41px" class="text-light">Non Fiksi</p>
                 <div class="col-3">
                     <div class="cover1">
                         <a href="/dashboard">
                             <img src="{{ asset('/sneat/assets/img/cover-books/cover2.png') }}" alt="">
                         </a>
-                        <p id="judul">Judul</p>
+                        <p id="judul" class="text-light">Judul</p>
                     </div>
                 </div>
                 <div class="col-3">
@@ -126,7 +104,7 @@
                         <a href="/dashboard">
                             <img src="{{ asset('/sneat/assets/img/cover-books/cover3.png') }}" alt="">
                         </a>
-                        <p id="judul">Judul</p>
+                        <p id="judul" class="text-light">Judul</p>
                     </div>
                 </div>
                 <div class="col-3">
@@ -134,7 +112,7 @@
                         <a href="/dashboard">
                             <img src="{{ asset('/sneat/assets/img/cover-books/cover1.png') }}" alt="">
                         </a>
-                        <p id="judul">Judul</p>
+                        <p id="judul" class="text-light">Judul</p>
                     </div>
                 </div>
                 <div class="col-3">
@@ -142,70 +120,11 @@
                         <a href="/dashboard">
                             <img src="{{ asset('/sneat/assets/img/cover-books/cover4.png') }}" alt="">
                         </a>
-                        <p id="judul">Judul</p>
+                        <p id="judul" class="text-light">Judul</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div id="container4">
-        <div class="features">
-            <p style="font-size: 32px; padding-top:60px" class="text-center text-light">Features</p>
-        </div>
-        <div class="container">
-            <div class="row" style="padding-left: 5%; padding-top:74px">
-                <div class="col-4">
-                    <div class="card" style="background-color: transparent">
-                        <div class="card-image"><img src="{{ asset('/sneat/assets/img/icons/Bookmark.png') }}"
-                                alt=""></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Bookmark</h5>
-                            <p class="card-text">
-                                You can use the bookmark feature for your book wishlist
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card" style="background-color: transparent">
-                        <div class="card-image"><img src="{{ asset('/sneat/assets/img/icons/Search.png') }}"
-                                alt=""></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Searching Book</h5>
-                            <p class="card-text">
-                                You can search for the book you want to borrow
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card" style="background-color: transparent">
-                        <div class="card-image"><img src="{{ asset('/sneat/assets/img/icons/Borrow Book.png') }}"
-                                alt=""></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Borrowing Book</h5>
-                            <p class="card-text">
-                                You can borrow books by placing an advance order.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="container5">
-        <div class="location">
-            <p style="font-size: 32px; padding-top:43px" class="text-center">Location</p>
-        </div>
-        <div class="container">
-            <div class="row" style="text-align: center; padding-top:43px">
-                <div class="col-12">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5273366991164!2d106.63152527398981!3d-6.193932693793689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f9bf18e93217%3A0xdcbd7b5bf0b8b249!2sTangcity%20Mall!5e0!3m2!1sid!2sid!4v1707809061579!5m2!1sid!2sid"
-                        width="847" height="409" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
+
         </div>
     </div>
     <footer style="background-color: #696CFF; height:204px">
