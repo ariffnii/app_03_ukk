@@ -54,27 +54,23 @@
     <script src="{{ asset('sneat') }}/assets/js/config.js"></script>
 </head>
 
-<body>
+<body style="background-image: url('{{ asset('sneat/assets/img/backgrounds/gambar1.png') }}'); background-size:cover;">
     <!-- Content -->
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
-            <div class="authentication-inner">
                 <!-- Login -->
                 <div class="card">
                     <div class="card-body">
                         <form method="POST" action="">
                             <!-- Logo -->
                             <div class="app-brand justify-content-center">
-                                <a href="index.html" class="app-brand-link gap-2">
-                                    <span class="app-brand-logo demo">
-
-                                    </span>
-                                    <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                                <a href="index.html" class="app-brand-link gap-2 mb-3">
+                                    <span class="app-brand-text demo text-body fw-bolder">L-Books</span>
                                 </a>
                             </div>
                             <!-- /Logo -->
                             <h4 class="mb-2">Welcome to L-Books! 👋</h4>
-                            <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                            <p class="mb-4">Please sign-in to your account</p>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
@@ -103,10 +99,14 @@
                                 </a>
                             </p>
                         </form>
+                        <div class="row">
+                            <div class="col text-center">
+                                <a href="/" class="btn btn-secondary">Back</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- /Login -->
-            </div>
         </div>
     </div>
 

@@ -42,10 +42,50 @@
                         <a class="nav-link text-light" href="">Categories</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
+                <div class="d-flex">
                     <a href="/login" type="button" class="btn me-3 btn-outline-light">Login</a>
                     <a href="/register" type="button" class="btn me-3 btn-outline-light">Register</a>
-                </form>
+                </div>
+                <li class="nav-item navbar-dropdown">
+                    <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset('sneat/assets/img/icons/user-w.png') }}" alt=""
+                            class="rounded-circle" style="width: 50px; height:50px; margin-bottom:20px;">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <div class="d-flex">
+                                    <div class="flex me-3">
+                                        <img src="{{ asset('sneat/assets/img/icons/user.png') }}" alt=""
+                                            class="rounded-circle" style="width: 50px; height:50px">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <span class="fw-medium d-block">John Doe</span>
+                                        <small class="text-muted">Admin</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <box-icon type='solid' class="me-2 align-middle" name='dashboard'></box-icon>
+                                <span class="align-middle">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                <box-icon name='power-off' class="me-2 align-middle" ></box-icon>
+                                <span class="align-middle">Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </div>
         </div>
     </nav>
@@ -55,7 +95,8 @@
                 <div class="col-6">
                     <div class="welcome">
                         <p class="text-light" style="font-size: 32px">Welcome to L-Books</p>
-                        <p class="text-light" style="font-size: 20px">Online Book Borrowing Website <br>Explore for Your
+                        <p class="text-light" style="font-size: 20px">Online Book Borrowing Website <br>Explore for
+                            Your
                             Knowledge</p>
                     </div>
                 </div>

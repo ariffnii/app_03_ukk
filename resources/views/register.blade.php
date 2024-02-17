@@ -36,123 +36,118 @@
     <script src="{{ asset('sneat') }}/assets/js/config.js"></script>
 </head>
 
-<body>
+<body style="background-image: url('{{ asset('sneat/assets/img/backgrounds/gambar1.png') }}'); background-size:cover;">
     <!-- Content -->
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
-            <div class="authentication-inner">
-                <!-- Register Card -->
-                <div class="card">
-                    <div class="card-body">
-                        <form method="POST" action="">
-                            <!-- Logo -->
-                            <div class="app-brand justify-content-center">
-                                <a href="index.html" class="app-brand-link gap-2">
-                                    <span class="app-brand-logo demo">
-
-                                    </span>
-                                    <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
-                                </a>
+            <!-- Register Card -->
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST" action="">
+                        <!-- Logo -->
+                        <div class="app-brand justify-content-center">
+                            <a href="index.html" class="app-brand-link gap-2 mb-3">
+                                <span class="app-brand-text demo text-body fw-bolder">L-Books</span>
+                            </a>
+                        </div>
+                        <!-- /Logo -->
+                        <h4 class="mb-2">Welcome To L-Books 👋</h4>
+                        <p class="mb-4">Make your account for easy borrowing book</p>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="username" class="form-label">Username</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="username" name="name"
+                                        placeholder="Enter your username" autofocus value="" required
+                                        autocomplete="name" autofocus />
+                                </div>
                             </div>
-                            <!-- /Logo -->
-                            <h4 class="mb-2">Adventure starts here 🚀</h4>
-                            <p class="mb-4">Make your account for easy borrowing book</p>
-                            <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
-                                <div class="mb-3">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <label for="username" class="form-label">Username</label>
-                                        </div>
-                                        <div class="col-9">
-                                            <input type="text" class="form-control" id="username" name="name"
-                                                placeholder="Enter your username" autofocus value="" required
-                                                autocomplete="name" autofocus />
-                                        </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="email" class="form-label">Email</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        placeholder="Enter your email" value="" required autocomplete="email" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="telepon" class="form-label">Telephone</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="telepon" name="telepon"
+                                        placeholder="Enter your telephone number" value="" required
+                                        autocomplete="telepon" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="alamat" class="form-label">Address</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="alamat" name="alamat"
+                                        placeholder="Enter your address" value="" required
+                                        autocomplete="address" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-password-toggle">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label class="form-label" for="password">Password</label>
+                                </div>
+                                <div class="col-9">
+                                    <div class="input-group input-group-merge">
+                                        <input type="password" id="password" class="form-control" name="password"
+                                            placeholder="********" aria-describedby="password" required
+                                            autocomplete="new-password" />
+                                        <span class="input-group-text cursor-pointer"><i
+                                                class="bx bx-hide"></i></span>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <label for="email" class="form-label">Email</label>
-                                        </div>
-                                        <div class="col-9">
-                                            <input type="text" class="form-control" id="email" name="email"
-                                                placeholder="Enter your email" value="" required
-                                                autocomplete="email" />
-                                        </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-password-toggle">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label class="form-label" for="confirm-password">Confirm Password</label>
+                                </div>
+                                <div class="col-9">
+                                    <div class="input-group input-group-merge">
+                                        <input type="password" id="confirm-password" class="form-control"
+                                            name="password_confirmation" placeholder="********"
+                                            aria-describedby="password" required autocomplete="new-password" />
+                                        <span class="input-group-text cursor-pointer"><i
+                                                class="bx bx-hide"></i></span>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <label for="telepon" class="form-label">Telephone</label>
-                                        </div>
-                                        <div class="col-9">
-                                            <input type="text" class="form-control" id="telepon" name="telepon"
-                                                placeholder="Enter your telephone number" value="" required
-                                                autocomplete="telepon" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <label for="alamat" class="form-label">Address</label>
-                                        </div>
-                                        <div class="col-9">
-                                            <input type="text" class="form-control" id="alamat" name="alamat"
-                                                placeholder="Enter your address" value="" required
-                                                autocomplete="address" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3 form-password-toggle">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <label class="form-label" for="password">Password</label>
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-merge">
-                                                <input type="password" id="password" class="form-control"
-                                                    name="password" placeholder="********"
-                                                    aria-describedby="password" required
-                                                    autocomplete="new-password" />
-                                                <span class="input-group-text cursor-pointer"><i
-                                                        class="bx bx-hide"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3 form-password-toggle">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <label class="form-label" for="password">Confirm Password</label>
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="input-group input-group-merge">
-                                                <input type="password" id="password" class="form-control"
-                                                    name="password_confirmation" placeholder="********"
-                                                    aria-describedby="password" required
-                                                    autocomplete="new-password" />
-                                                <span class="input-group-text cursor-pointer"><i
-                                                        class="bx bx-hide"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn-primary d-grid w-100" type="submit">Sign up</button>
-                            </form>
-                            <p class="text-center">
-                                <span>Already have an account?</span>
-                                <a href="/login">
-                                    <span>Sign in instead</span>
-                                </a>
-                            </p>
-                        </form>
-                    </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary d-grid w-100" type="submit">Sign up</button>
+                        <p class="text-center">
+                            <span>Already have an account?</span>
+                            <a href="/login">
+                                <span>Sign in instead</span>
+                            </a>
+                        </p>
+                        <div class="row">
+                            <div class="col text-center">
+                                <a href="/" class="btn btn-secondary">Back</a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <!-- /Register Card -->
             </div>
+            <!-- /Register Card -->
         </div>
     </div>
     <!-- / Content -->
