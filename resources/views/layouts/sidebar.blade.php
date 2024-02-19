@@ -96,7 +96,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="icons-boxicons.html" class="menu-link">
+            <a href="{{ route('pegawai.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-plus"></i>
                 <div data-i18n="Boxicons">Data Pegawai</div>
             </a>

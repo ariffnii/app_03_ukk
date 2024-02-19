@@ -26,7 +26,7 @@
                     </div>
                     <!-- / Content -->
                     <!-- Footer -->
-                    @include('layouts.footer')
+
                     <!-- / Footer -->
                     <div class="content-backdrop fade"></div>
                 </div>
@@ -37,6 +37,7 @@
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    @include('layouts.footer')
     <!-- / Layout wrapper -->
     @include('partials.script')
 </body>

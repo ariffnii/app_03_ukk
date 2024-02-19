@@ -2,9 +2,9 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            @forelse ($buku as $item)
             <table class="table">
                 <thead>
+                    @forelse ($dataPegawai as $item)
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">judul</th>
@@ -15,15 +15,15 @@
                 <tbody>
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $item->judul }}</td>
-                    <td>{{ $item->deskripsi }}</td>
-                    <td>{{ $item->stock }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->telepon }}</td>
+                    <td>{{ $item->alamat }}</td>
                   </tr>
                     @empty
                     data tidak ada
+                    {{ $dataPegawai->links() }}
                 </tbody>
             </table>
-            {{ $buku->links() }}    
             @endforelse
         </div>
     </div>

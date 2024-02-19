@@ -9,18 +9,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Buku extends Model
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, HasApiTokens, Notifiable;
     protected $table = ['buku'];
-    protected $primaryKey = ['id'];
-    protected $guarded = ['id'];
     protected $fillable = [
         'judul',
         'penulis',
         'penerbit',
-        'tahun_terbit',
-        'cover',
-        'deskripsi',
-        'kategori',
-        'stock',
+        '',
+        'email',
+        'password',
     ];
+
 }

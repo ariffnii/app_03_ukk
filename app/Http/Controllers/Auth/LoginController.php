@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -39,12 +39,12 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticated(){
-        if(Auth::user()->role == 'user'){
+    public function authenticated(Request $request, $user){
+        if($user->role == 'user'){
             return redirect()->route('user.beranda');
-        } elseif (Auth::user()->role == 'admin') {
+        } elseif ($user->role == 'admin') {
             return redirect()->route('admin.beranda');
-        } else if(Auth::user()->role == 'officer'){
+        } else if($user->role == 'officer'){
             return redirect()->route('officer.beranda');
         } else {
             Auth::logout();

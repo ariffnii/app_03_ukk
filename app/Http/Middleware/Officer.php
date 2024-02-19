@@ -16,7 +16,7 @@ class Officer
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->role == 'officer') {
+        if ($request->user()->role == 'officer') {
             return $next($request);
         }
         abort(403, 'Akses Ditolak');

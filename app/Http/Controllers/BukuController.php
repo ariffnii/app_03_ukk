@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buku;
+use Illuminate\View\View;
+use App\Models\Buku as Model;
 use App\Http\Requests\StoreBukuRequest;
 use App\Http\Requests\UpdateBukuRequest;
 
@@ -15,13 +16,12 @@ class BukuController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() :View
     {
-        $buku = Buku::latest()->paginate(10);
-        return view('admin.' . $this->viewIndex, [
-            'databuku' => $buku,
-            'routePrefix' => $this->routePrefix
-        ]);
+
+        $buku = Model::all();
+        dd($buku);
+        return view('admin.buku_index', compact('buku'));
     }
 
     /**
@@ -29,7 +29,7 @@ class BukuController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
