@@ -128,6 +128,12 @@ class BukuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $buku = Buku::findorFail($id);
+
+        Strorage::delete('public/sneat/assets/img/buku'. $buku->cover);
+
+        $buku->delete();
+
+        return redirect()->route('buku.index')->with(['success' => 'Data buku berhasil dihapus']);
     }
 }
