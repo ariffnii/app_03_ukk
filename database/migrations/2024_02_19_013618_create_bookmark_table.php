@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('koleksi', function (Blueprint $table) {
+        Schema::create('bookmark', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedBigInteger('id_buku');
-            $table->foreign('id_buku')->references('id')->on('buku');
+            $table->foreign('id_buku')->references('id')->on('bukus');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('koleksi');
+        Schema::dropIfExists('bookmark');
     }
 };

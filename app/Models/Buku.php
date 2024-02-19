@@ -2,22 +2,21 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Buku extends Model
 {
-    use HasFactory, HasApiTokens, Notifiable;
-    protected $table = ['buku'];
+    use HasFactory;
+
     protected $fillable = [
         'judul',
         'penulis',
         'penerbit',
-        '',
-        'email',
-        'password',
+        'tahun_terbit',
+        'cover',
+        'deskripsi',
+        'kategori',
+        'stock',
     ];
-
 }

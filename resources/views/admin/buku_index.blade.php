@@ -1,8 +1,11 @@
 @extends('layouts.app')
+
 @section('content')
-    <div class="card">
-        <div class="card-body">
-            @forelse ($buku as $item)
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+
+                <div class="card-body">
+                    @forelse ($buku as $item)
             <table class="table">
                 <thead>
                   <tr>
@@ -23,8 +26,9 @@
                     data tidak ada
                 </tbody>
             </table>
-            {{ $buku->links() }}    
+            {{ $buku->links() }}
             @endforelse
-        </div>
-    </div>
+                </div>
+            </div>
 @endsection
+

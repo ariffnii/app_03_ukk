@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use Illuminate\View\View;
-use App\Models\Buku as Model;
-use App\Http\Requests\StoreBukuRequest;
-use App\Http\Requests\UpdateBukuRequest;
+use Illuminate\Http\Request;
 
 class BukuController extends Controller
 {
-    protected $viewIndex = 'buku_index';
-    protected $viewCreate = 'buku_form';
-    protected $viewEdit = 'buku_form';
-    protected $routePrefix = 'buku';
     /**
      * Display a listing of the resource.
      */
-    public function index() :View
+    public function index(): View
     {
+        //get posts
+        $buku = Buku::latest()->paginate(5);
 
-        $buku = Model::all();
-        dd($buku);
+        //render view with posts
         return view('admin.buku_index', compact('buku'));
     }
 
@@ -29,13 +25,13 @@ class BukuController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBukuRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -43,7 +39,7 @@ class BukuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Buku $buku)
+    public function show(string $id)
     {
         //
     }
@@ -51,7 +47,7 @@ class BukuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Buku $buku)
+    public function edit(string $id)
     {
         //
     }
@@ -59,7 +55,7 @@ class BukuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBukuRequest $request, Buku $buku)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -67,7 +63,7 @@ class BukuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Buku $buku)
+    public function destroy(string $id)
     {
         //
     }

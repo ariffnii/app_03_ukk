@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedBigInteger('id_buku');
-            $table->foreign('id_buku')->references('id')->on('buku');
+            $table->foreign('id_buku')->references('id')->on('bukus');
             $table->string('ulasan');
             $table->enum('rating', ['1', '2', '3', '4', '5']);
             $table->timestamps();
