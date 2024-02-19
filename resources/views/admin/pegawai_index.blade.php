@@ -6,25 +6,27 @@
                 <thead>
                     @forelse ($dataPegawai as $item)
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">judul</th>
-                    <th scope="col">deskripsi</th>
-                    <th scope="col">stock</th>
+                    <th class="text-center">No</th>
+                    <th class="text-center">Username</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Telephone</th>
+                    <th class="text-center">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->telepon }}</td>
-                    <td>{{ $item->alamat }}</td>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td class="text-center">{{ $item->name }}</td>
+                    <td class="text-center">{{ $item->email }}</td>
+                    <td class="text-center">{{ $item->telepon }}</td>
+                    <td class="text-center">{{ $item->stock }}</td>
                   </tr>
                     @empty
                     data tidak ada
-                    {{ $dataPegawai->links() }}
+                    @endforelse
                 </tbody>
             </table>
-            @endforelse
+            {{ $dataPegawai->links() }}
         </div>
     </div>
 @endsection

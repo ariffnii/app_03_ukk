@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
 {
@@ -25,7 +26,7 @@ class BukuController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.buku_form');
     }
 
     /**
@@ -33,7 +34,29 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'cover' => 'required|mimes:png,jpg,jpeg',
+            'deskripsi' => 'required',
+            'kategori' => 'required|in:fiksi,non_fiksi',
+            'stock' => 'required|numeric',
+        ]);
+        $cover = $request->file('cover');
+        $cover->storeAs('public/sneat/assets/img/buku', $cover->hashName());
+        Buku::create([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
+            'cover' => $cover->hashName(),
+            'deskripsi' => $request->deskripsi,
+            'kategori' => $request->kategori,
+            'stock' => $request->stock,
+        ]);
+        return redirect()->route('buku.index')->with(['success' => 'Data buku berhasil ditambahkan']);
     }
 
     /**
@@ -49,7 +72,8 @@ class BukuController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $buku = Buku::findorFail($id);
+        return view('admin.buku_edit', compact('buku'));
     }
 
     /**
@@ -57,7 +81,46 @@ class BukuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'cover' => 'required|mimes:png,jpg,jpeg',
+            'deskripsi' => 'required',
+            'kategori' => 'required|in:fiksi,non_fiksi',
+            'stock' => 'required|numeric',
+        ]);
+
+        $buku =  Buku::findorFail($id);
+
+        if($request->hasFile('cover')) {
+            $cover = $request->file('cover');
+            $cover->storeAs('public/sneat/assets/img/buku', $cover->hashName());
+            Storage::delete('public/sneat/assets/img/buku/'.$buku->cover);
+
+            $buku->update([
+                'judul' => $request->judul,
+                'penulis' => $request->penulis,
+                'penerbit' => $request->penerbit,
+                'tahun_terbit' => $request->tahun_terbit,
+                'cover' => $cover->hashName(),
+                'deskripsi' => $request->deskripsi,
+                'kategori' => $request->kategori,
+                'stock' => $request->stock,
+            ]);
+        } else {
+            $buku->update([
+                'judul' => $request->judul,
+                'penulis' => $request->penulis,
+                'penerbit' => $request->penerbit,
+                'tahun_terbit' => $request->tahun_terbit,
+                'deskripsi' => $request->deskripsi,
+                'kategori' => $request->kategori,
+                'stock' => $request->stock,
+            ]);
+        }
+        return redirect()->route('buku.index')->with(['success' => 'Data buku berhasil diperbarui']);
     }
 
     /**
