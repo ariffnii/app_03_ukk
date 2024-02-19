@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\BerandaUserController;
+use App\Http\Controllers\BerandaAdminController;
+use App\Http\Controllers\BerandaOfficerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +26,28 @@ Route::get('/categories', function () {
 Route::get('/deskripsi', function () {
     return view('deskripsiBuku');
 });
-Route::get('/dashboard/admin', function () {
-    return view('admin.BerandaAdmin');
+
+Auth::routes();
+
+//admin
+Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
+    Route::get('beranda', [BerandaAdminController::class, 'index'])->name('admin.beranda');
+    Route::resource('buku', BukuController::class)->names('buku');
 });
-Route::get('/dashboard/user', function () {
-    return view('users.dashboardUser');
+
+//officer
+Route::prefix('officer')->middleware(['auth', 'auth.officer'])->group(function () {
+    Route::get('beranda', [BerandaOfficerController::class, 'index'])->name('officer.beranda');
 });
-Route::get('/login', function () {
-    return view('login');
+
+//user
+Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
+    Route::get('beranda', [BerandaUserController::class, 'index'])->name('user.beranda');
 });
-Route::get('/register', function () {
-    return view('register');
-});
+
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('login');
+})->name('logout');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

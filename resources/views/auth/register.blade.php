@@ -43,7 +43,8 @@
             <!-- Register Card -->
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
                             <a href="index.html" class="app-brand-link gap-2 mb-3">
@@ -59,9 +60,14 @@
                                     <label for="username" class="form-label">Username</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="text" class="form-control" id="username" name="name"
-                                        placeholder="Enter your username" autofocus value="" required
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="username" name="name"
+                                        placeholder="Enter your username" autofocus value="{{ old('username') }}" required
                                         autocomplete="name" autofocus />
+                                        @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                         </div>
@@ -71,8 +77,13 @@
                                     <label for="email" class="form-label">Email</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="text" class="form-control" id="email" name="email"
-                                        placeholder="Enter your email" value="" required autocomplete="email" />
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
+                                        placeholder="Enter your email" value="{{ old('email') }}" required autocomplete="email" />
+                                        @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                         </div>
@@ -82,9 +93,14 @@
                                     <label for="telepon" class="form-label">Telephone</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="text" class="form-control" id="telepon" name="telepon"
-                                        placeholder="Enter your telephone number" value="" required
+                                    <input type="number" class="form-control @error('telepon') is-invalid @enderror" id="telepon" name="telepon"
+                                        placeholder="Enter your telephone number" value="{{ old('telepon') }}" required
                                         autocomplete="telepon" />
+                                        @error('telepon')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                         </div>
@@ -94,9 +110,14 @@
                                     <label for="alamat" class="form-label">Address</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="text" class="form-control" id="alamat" name="alamat"
-                                        placeholder="Enter your address" value="" required
+                                    <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat"
+                                        placeholder="Enter your address" value="{{ old('alamat') }}" required
                                         autocomplete="address" />
+                                        @error('alamat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                         </div>
@@ -107,11 +128,17 @@
                                 </div>
                                 <div class="col-9">
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control" name="password"
+                                        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password"
                                             placeholder="********" aria-describedby="password" required
                                             autocomplete="new-password" />
-                                        <span class="input-group-text cursor-pointer"><i
-                                                class="bx bx-hide"></i></span>
+                                        <span class="input-group-text cursor-pointer">
+                                            <i class="bx bx-hide"></i>
+                                            </span>
+                                            @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                     </div>
                                 </div>
                             </div>

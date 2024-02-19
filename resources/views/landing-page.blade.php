@@ -42,10 +42,8 @@
                         <a class="nav-link text-light" href="">Categories</a>
                     </li>
                 </ul>
-                <div class="d-flex">
-                    <a href="/login" type="button" class="btn me-3 btn-outline-light">Login</a>
-                    <a href="/register" type="button" class="btn me-3 btn-outline-light">Register</a>
-                </div>
+                @if (Route::has('login'))
+                @auth
                 <li class="nav-item navbar-dropdown">
                     <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{ asset('sneat/assets/img/icons/user-w.png') }}" alt=""
@@ -60,8 +58,8 @@
                                             class="rounded-circle" style="width: 50px; height:50px">
                                     </div>
                                     <div class="flex-grow-1">
-                                        <span class="fw-medium d-block">John Doe</span>
-                                        <small class="text-muted">Admin</small>
+                                        <span class="fw-medium d-block">{{ Auth::user()->name }}</span>
+                                        <small class="text-muted">{{ Auth::user()->role }}</small>
                                     </div>
                                 </div>
                             </a>
@@ -79,13 +77,20 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="javascript:void(0);">
+                            <a class="dropdown-item" href="{{ route('logout') }}">
                                 <box-icon name='power-off' class="me-2 align-middle" ></box-icon>
                                 <span class="align-middle">Log Out</span>
                             </a>
                         </li>
                     </ul>
                 </li>
+                @else
+                <div class="d-flex">
+                    <a href="{{ route('login') }}" type="button" class="btn me-3 btn-outline-light">Login</a>
+                    <a href="{{ route('register') }}" type="button" class="btn me-3 btn-outline-light">Register</a>
+                </div>
+                @endauth
+                @endif
             </div>
         </div>
     </nav>
