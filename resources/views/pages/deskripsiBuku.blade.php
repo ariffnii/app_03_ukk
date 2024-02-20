@@ -57,7 +57,7 @@
                         <a href="/dashboard">
                             <img src="{{ asset('/sneat/assets/img/cover-books/cover2.png') }}" alt="">
                         </a>
-                        <p id="judul" class="text-light">Judul</p>
+                        <p id="judul" class="text-light">{{ $dbuku->judul }}</p>
                     </div>
                 </div>
                 <div class="col-9" style="padding-top: 108px; padding-left:146px">

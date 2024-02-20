@@ -3,10 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Ulasan;
+use App\Models\Koleksi;
+use App\Models\Bookmark;
+use App\Models\Peminjaman;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -45,4 +49,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function ulasan(){
+        return $this->hasMany(Ulasan::class);
+    }
+
+    public function bookmark(){
+        return $this->hasMany(Bookmark::class);
+    }
+
+    public function koleksi(){
+        return $this->hasMany(Koleksi::class);
+    }
+
+    public function peminjaman(){
+       return $this->hasMany(Peminjaman::class);
+    }
 }

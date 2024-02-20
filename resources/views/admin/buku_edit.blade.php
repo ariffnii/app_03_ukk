@@ -57,6 +57,7 @@
             <label class="col-sm-2 col-form-label" for="cover">Cover</label>
             <div class="col-sm-10">
               <input type="file" name="cover" id="cover" class="form-control" value="{{ old('cover', $buku->cover) }}">
+              <img src="{{ asset('storage/cover_book/'.$buku->cover) }}" alt="" width="100px" height="100px">
             </div>
             @error('cover')
                 <div class="alert alert-danger mt-2">
@@ -80,8 +81,8 @@
             <div class="col-sm-10">
                 <select id="kategori" name="kategori" class="form-select form-control">
                     <option>Fiksi/Non Fiksi</option>
-                    <option value="fiksi">Fiksi</option>
-                    <option value="non_fiksi" >Non Fiksi</option>
+                    <option value="fiksi" {{ $buku->kategori == 'fiksi' ? 'selected' : '' }}>Fiksi</option>
+                    <option value="non_fiksi" {{ $buku->kategori == 'non_fiksi' ? 'selected' : '' }}>Non Fiksi</option>
                 </select>
             </div>
             @error('kategori')

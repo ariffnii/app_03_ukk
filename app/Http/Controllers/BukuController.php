@@ -12,10 +12,11 @@ class BukuController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index(): View
     {
         //get posts
-        $buku = Buku::latest()->paginate(5);
+        $buku = Buku::latest()->paginate(15);
 
         //render view with posts
         return view('admin.buku_index', compact('buku'));
@@ -45,7 +46,7 @@ class BukuController extends Controller
             'stock' => 'required|numeric',
         ]);
         $cover = $request->file('cover');
-        $cover->storeAs('public/sneat/assets/img/buku', $cover->hashName());
+        $cover->storeAs('public/cover_book', $cover->hashName());
         Buku::create([
             'judul' => $request->judul,
             'penulis' => $request->penulis,
@@ -64,7 +65,8 @@ class BukuController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $buku = Buku::findorFail($id);
+        return view();
     }
 
     /**
@@ -129,11 +131,8 @@ class BukuController extends Controller
     public function destroy(string $id)
     {
         $buku = Buku::findorFail($id);
-
-        Strorage::delete('public/sneat/assets/img/buku'. $buku->cover);
-
+        Storage::delete('public/sneat/assets/img/buku'. $buku->cover);
         $buku->delete();
-
         return redirect()->route('buku.index')->with(['success' => 'Data buku berhasil dihapus']);
     }
 }

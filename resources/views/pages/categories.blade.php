@@ -30,13 +30,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Home</a>
+                        <a class="nav-link text-light" href="{{ route('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="">Books</a>
+                        <a class="nav-link text-light" href="{{ route('index') }}">Books</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="">Categories</a>
@@ -56,73 +56,29 @@
             </div>
             <div class="row" style="padding-top: 46px;">
                 <p style="font-size: 24px; font-family:'Public Sans', sans-serif; padding-bottom: 41px" class="text-light">Fiksi</p>
+                @foreach ($categories->where('kategori', 'fiksi')->take(4) as $item)
                 <div class="col-3">
                     <div class="cover1">
                         <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover2.png') }}" alt="">
+                            <img src="{{ asset('storage/cover_book/'. $item->cover) }}" alt="">
                         </a>
-                        <p id="judul" class="text-light">Judul</p>
+                        <p id="judul" class="text-light">{{ $item->judul }}</p>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover3.png') }}" alt="">
-                        </a>
-                        <p id="judul" class="text-light">Judul</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover1.png') }}" alt="">
-                        </a>
-                        <p id="judul" class="text-light">Judul</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover4.png') }}" alt="">
-                        </a>
-                        <p id="judul" class="text-light">Judul</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="row" style="padding-top: 53px; padding-bottom:76px">
                 <p style="font-size: 24px; font-family:'Public Sans', sans-serif; padding-bottom: 41px" class="text-light">Non Fiksi</p>
+                @foreach ($categories->where('kategori', 'non_fiksi')->take(4) as $item)
                 <div class="col-3">
                     <div class="cover1">
                         <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover2.png') }}" alt="">
+                            <img src="{{ asset('storage/cover_book/'. $item->cover) }}" alt="">
                         </a>
-                        <p id="judul" class="text-light">Judul</p>
+                        <p id="judul" class="text-light">{{ $item->judul }}</p>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover3.png') }}" alt="">
-                        </a>
-                        <p id="judul" class="text-light">Judul</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover1.png') }}" alt="">
-                        </a>
-                        <p id="judul" class="text-light">Judul</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover4.png') }}" alt="">
-                        </a>
-                        <p id="judul" class="text-light">Judul</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>

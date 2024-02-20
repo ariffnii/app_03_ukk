@@ -10,7 +10,7 @@
                             <tr>
                                 <th class="text-center">No</th>
                                 <th class="text-center">judul</th>
-                                <th class="text-center">deskripsi</th>
+                                <th class="text-center">penulis</th>
                                 <th class="text-center">stock</th>
                                 <th class="text-center">Cover</th>
                                 <th class="text-center">Aksi</th>
@@ -21,21 +21,31 @@
                   <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td class="text-center">{{ $item->judul }}</td>
-                    <td class="text-center">{{ $item->deskripsi }}</td>
+                    <td class="text-center">{{ $item->penulis }}</td>
                     <td class="text-center">{{ $item->stock }}</td>
-                    <td class="text-center"><img src="{{ asset('sneat/assets/img/buku/' . $item->cover) }}" alt="" width="100"></td>
                     <td class="text-center">
-                        <a href="{{ route('buku.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                        <a href="{{ route('buku.destroy', $item->id) }}" class="btn btn-danger">Delete</a>
+                        <img src="{{ asset('storage/cover_book/'.$item->cover) }}" alt="" width="100px" height="100px">
+                    </td>
+                    <td class="text-center">
+                        <form action="{{ route('buku.destroy', $item->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <a href="{{ route('buku.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                            <button type="submit" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                    @empty
+                    <td colspan="6">
+                        data tidak ada
                     </td>
                   </tr>
-                    @empty
-                    data tidak ada
-                    {{ $buku->links() }}
                     @endforelse
                 </tbody>
             </table>
-                </div>
+            <div class="d-flex justify-content-end mt-3">
+                {{ $buku->links() }}
             </div>
+        </div>
+    </div>
 @endsection
 

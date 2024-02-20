@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\BerandaUserController;
 use App\Http\Controllers\BerandaAdminController;
 use App\Http\Controllers\BerandaOfficerController;
@@ -19,13 +21,16 @@ use App\Http\Controllers\BerandaOfficerController;
 */
 
 Route::get('/', function () {
-    return view('landing-page');
+    return view('pages.landing-page');
 });
 Route::get('/categories', function () {
-    return view('categories');
+    return view('pages.categories');
 });
-Route::get('/deskripsi', function () {
-    return view('deskripsiBuku');
+
+//landing
+Route::prefix('/')->group(function () {
+    Route::resource('/', LandingController::class);
+    Route::resource('categories', CategoriesController::class);
 });
 
 Auth::routes();

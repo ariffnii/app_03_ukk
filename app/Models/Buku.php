@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Ulasan;
+use App\Models\Peminjaman;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Buku extends Model
 {
@@ -19,4 +21,16 @@ class Buku extends Model
         'kategori',
         'stock',
     ];
+    
+    public function ulasan(){
+        return $this->hasMany(Ulasan::class);
+    }
+
+    public function peminjaman(){
+        return $this->hasMany(Peminjaman::class);
+    }
+
+    public function koleksi(){
+        return $this->hasMany(Koleksi::class);
+    }
 }

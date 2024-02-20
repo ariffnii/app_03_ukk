@@ -39,7 +39,7 @@
                         <a class="nav-link text-light" href="">Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="">Categories</a>
+                        <a class="nav-link text-light" href="{{ route('categories.index') }}">Categories</a>
                     </li>
                 </ul>
                 @if (Route::has('login'))
@@ -125,72 +125,16 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover2.png') }}" alt="">
-                        </a>
-                        <p id="judul">Judul</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover3.png') }}" alt="">
-                        </a>
-                        <p id="judul">Judul</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover1.png') }}" alt="">
-                        </a>
-                        <p id="judul">Judul</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover4.png') }}" alt="">
-                        </a>
-                        <p id="judul">Judul</p>
-                    </div>
+            @foreach ($dbuku->take(8) as $item)
+            <div class="col-3">
+                <div class="cover1">
+                    <a href="{{ route('show', $item->id) }}">
+                        <img src="{{ asset('storage/cover_book/'.$item->cover) }}" alt="">
+                    </a>
+                    <p id="judul">{{ $item->judul }}</p>
                 </div>
             </div>
-            <div class="row" style="margin-top: 30px">
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover2.png') }}" alt="">
-                        </a>
-                        <p id="judul">Judul</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover3.png') }}" alt="">
-                        </a>
-                        <p id="judul">Judul</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover1.png') }}" alt="">
-                        </a>
-                        <p id="judul">Judul</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover4.png') }}" alt="">
-                        </a>
-                        <p id="judul">Judul</p>
-                    </div>
-                </div>
+            @endforeach
             </div>
         </div>
     </div>
