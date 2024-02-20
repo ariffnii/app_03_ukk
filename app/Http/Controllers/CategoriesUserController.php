@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Peminjaman;
-use App\Http\Requests\StorePeminjamanRequest;
-use App\Http\Requests\UpdatePeminjamanRequest;
+use App\Models\Buku;
+use Illuminate\Http\Request;
 
-class PeminjamanController extends Controller
+class CategoriesUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $categories = Buku::all();
+        return view('pages.categories', compact('categories'));
     }
 
     /**
@@ -27,7 +27,7 @@ class PeminjamanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePeminjamanRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class PeminjamanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Peminjaman $peminjaman)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +43,7 @@ class PeminjamanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Peminjaman $peminjaman)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +51,7 @@ class PeminjamanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePeminjamanRequest $request, Peminjaman $peminjaman)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,7 +59,7 @@ class PeminjamanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Peminjaman $peminjaman)
+    public function destroy(string $id)
     {
         //
     }

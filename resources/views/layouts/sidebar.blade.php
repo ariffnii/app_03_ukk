@@ -155,4 +155,28 @@
         </li>
     </ul>
     @endif
+    @if (Auth::user()->role == 'user')
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a href="" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Peminjaman</span></li>
+        <li class="menu-item">
+            <a href="{{ route('peminjaman.user.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-list-ul"></i>
+                <div data-i18n="Basic">Data Peminjaman</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="icons-boxicons.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-receipt"></i>
+                <div data-i18n="Boxicons">Data Struk</div>
+            </a>
+        </li>
+    </ul>
+    @endif
 </aside>

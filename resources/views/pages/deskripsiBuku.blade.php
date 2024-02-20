@@ -42,10 +42,46 @@
                         <a class="nav-link text-light" href="">Categories</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <a href="/login" type="button" class="btn me-3 btn-outline-light">Login</a>
-                    <a href="/register" type="button" class="btn me-3 btn-outline-light">Register</a>
-                </form>
+                <li class="nav-item navbar-dropdown">
+                    <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset('sneat/assets/img/icons/user-w.png') }}" alt=""
+                            class="rounded-circle" style="width: 50px; height:50px; margin-bottom:20px;">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <div class="d-flex">
+                                    <div class="flex me-3">
+                                        <img src="{{ asset('sneat/assets/img/icons/user.png') }}" alt=""
+                                            class="rounded-circle" style="width: 50px; height:50px">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <span class="fw-medium d-block">{{ Auth::user()->name }}</span>
+                                        <small class="text-muted">{{ Auth::user()->role }}</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('user.dashboard') }}">
+                                <box-icon type='solid' class="me-2 align-middle" name='dashboard'></box-icon>
+                                <span class="align-middle">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}">
+                                <box-icon name='power-off' class="me-2 align-middle" ></box-icon>
+                                <span class="align-middle">Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </div>
         </div>
     </nav>
@@ -55,7 +91,7 @@
                 <div class="col-3" style="padding-top: 154px">
                     <div class="cover1">
                         <a href="/dashboard">
-                            <img src="{{ asset('/sneat/assets/img/cover-books/cover2.png') }}" alt="">
+                            <img src="{{ asset('storage/cover_book/'. $dbuku->cover) }}" alt="">
                         </a>
                         <p id="judul" class="text-light">{{ $dbuku->judul }}</p>
                     </div>
@@ -64,15 +100,13 @@
                     <div class="card" style="width: 756px; height:713px">
                         <div class="card-body" style="width: 567px; height:713px">
                             <div class="card-title" style="padding-top: 46px; padding-left:44px">
-                                <p style="font-family:'Public Sans', sans-serif; font-size:32px; text-align:left">Judul
+                                <p style="font-family:'Public Sans', sans-serif; font-size:32px; text-align:left">{{ $dbuku->judul }}
                                 </p>
                             </div>
                             <div class="card-text">
                                 <p
                                     style="text-align:left; padding-top:39px; padding-left:44px; font-family:'Public Sans', sans-serif; font-size:20px">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    {{ $dbuku->deskripsi }}
                                 </p>
                                 <div class="row">
                                     <div class="col-6">
@@ -83,7 +117,7 @@
                                     <div class="col-6">
                                         <p
                                             style="text-align:left; padding-top:30px; font-family:'Public Sans', sans-serif; font-size:20px">
-                                            Arif</p>
+                                            {{ $dbuku->penulis }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -95,7 +129,7 @@
                                     <div class="col-6">
                                         <p
                                             style="text-align:left; padding-top:10px; font-family:'Public Sans', sans-serif; font-size:20px">
-                                            Gramedia</p>
+                                            {{ $dbuku->penerbit }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -107,7 +141,7 @@
                                     <div class="col-6">
                                         <p
                                             style="text-align:left; padding-top:10px; font-family:'Public Sans', sans-serif; font-size:20px">
-                                            2021</p>
+                                            {{ $dbuku->tahun_terbit }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -119,7 +153,7 @@
                                     <div class="col-6">
                                         <p
                                             style="text-align:left; padding-top:10px; font-family:'Public Sans', sans-serif; font-size:20px">
-                                            15</p>
+                                            {{ $dbuku->stock }}</p>
                                     </div>
                                 </div>
                                 <div class="row" style="padding-top: 30px; padding-left:270px">
@@ -128,8 +162,8 @@
                                             style="width: 130px; height:47px; font-family:'Public Sans', sans-serif; font-size:20px">Bookmark</button>
                                     </div>
                                     <div class="col-6">
-                                        <button class="btn btn-primary"
-                                            style="width: 130px; height:47px; font-family:'Public Sans', sans-serif; font-size:20px">Pinjam</button>
+                                        <a href="{{ route('user.pinjam', $dbuku->id) }}" class="btn btn-primary"
+                                            style="width: 130px; height:47px; font-family:'Public Sans', sans-serif; font-size:20px">Pinjam</a>
                                     </div>
                                 </div>
                             </div>

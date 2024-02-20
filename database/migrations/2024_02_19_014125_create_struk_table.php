@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('struk', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_peminjaman');
-            $table->foreign('id_peminjaman')->references('id')->on('peminjaman');
+            $table->foreign('id_peminjaman')->references('id')->on('peminjamen');
             $table->timestamps();
         });
     }

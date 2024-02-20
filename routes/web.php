@@ -8,6 +8,8 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\BerandaUserController;
 use App\Http\Controllers\BerandaAdminController;
 use App\Http\Controllers\BerandaOfficerController;
+use App\Http\Controllers\CategoriesUserController;
+use App\Http\Controllers\PeminjamanUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,7 @@ Route::get('/categories', function () {
 //landing
 Route::prefix('/')->group(function () {
     Route::resource('/', LandingController::class);
-    Route::resource('categories', CategoriesController::class);
+    Route::get('/categories', [CategoriesUserController::class, 'index'])->name('kategori.user');
 });
 
 Auth::routes();
@@ -50,6 +52,11 @@ Route::prefix('officer')->middleware(['auth', 'auth.officer'])->group(function (
 //user
 Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
     Route::get('beranda', [BerandaUserController::class, 'index'])->name('user.beranda');
+    Route::resource('categories', CategoriesController::class);
+    Route::get('/deskripsi/{id}', [LandingController::class, 'show'])->name('deskripsi.show');
+    Route::get('dashboard', [BerandaUserController::class, 'show'])->name('user.dashboard');
+    Route::resource('peminjaman', PeminjamanUserController::class)->names('peminjaman.user');
+    Route::get('/userpinjam/{id}', [PeminjamanUserController::class, 'create'])->name('user.pinjam');
 });
 
 Route::get('logout', function () {

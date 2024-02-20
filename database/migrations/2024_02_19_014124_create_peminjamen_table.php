@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('peminjaman', function (Blueprint $table) {
+        Schema::create('peminjamen', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedBigInteger('id_buku');
             $table->foreign('id_buku')->references('id')->on('bukus');
-            $table->unsignedBigInteger('id_bookmark');
-            $table->foreign('id_bookmark')->references('id')->on('bookmark')->nullable();
+            $table->unsignedBigInteger('id_bookmark')->nullable();
+            $table->foreign('id_bookmark')->references('id')->on('bookmark');
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
             $table->integer('jumlah');
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('peminjaman');
+        Schema::dropIfExists('peminjamen');
     }
 };

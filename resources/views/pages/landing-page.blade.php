@@ -38,9 +38,17 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="">Books</a>
                     </li>
+                    @if (Route::has('login'))
+                    @auth
                     <li class="nav-item">
                         <a class="nav-link text-light" href="{{ route('categories.index') }}">Categories</a>
                     </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{{ route('kategori.user') }}">Categories</a>
+                    </li>
+                    @endauth
+                    @endif
                 </ul>
                 @if (Route::has('login'))
                 @auth
@@ -68,7 +76,7 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('user.dashboard') }}">
                                 <box-icon type='solid' class="me-2 align-middle" name='dashboard'></box-icon>
                                 <span class="align-middle">Dashboard</span>
                             </a>
@@ -128,7 +136,7 @@
             @foreach ($dbuku->take(8) as $item)
             <div class="col-3">
                 <div class="cover1">
-                    <a href="{{ route('show', $item->id) }}">
+                    <a href="{{ route('deskripsi.show', $item->id) }}">
                         <img src="{{ asset('storage/cover_book/'.$item->cover) }}" alt="">
                     </a>
                     <p id="judul">{{ $item->judul }}</p>

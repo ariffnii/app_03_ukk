@@ -21,13 +21,13 @@ class Buku extends Model
         'kategori',
         'stock',
     ];
-    
+
     public function ulasan(){
         return $this->hasMany(Ulasan::class);
     }
 
     public function peminjaman(){
-        return $this->hasMany(Peminjaman::class);
+        return $this->hasOne(Peminjaman::class);
     }
 
     public function koleksi(){

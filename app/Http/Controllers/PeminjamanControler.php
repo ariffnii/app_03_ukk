@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buku;
 use Illuminate\Http\Request;
 
-class LandingController extends Controller
+class PeminjamanControler extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $dbuku = Buku::all();
-        return view('pages.landing-page', compact('dbuku'));
+        //
     }
 
     /**
@@ -21,7 +19,7 @@ class LandingController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -37,8 +35,7 @@ class LandingController extends Controller
      */
     public function show(string $id)
     {
-        $dbuku = Buku::findorFail($id);
-        return view('pages.deskripsiBuku', compact('dbuku'));
+        //
     }
 
     /**

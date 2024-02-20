@@ -13,6 +13,14 @@ class BukuSeeder extends Seeder
      */
     public function run(): void
     {
-        
+        Buku::create([
+            'judul' => 'judul',
+            'penulis' => 'penulis',
+            'penerbit' => 'penerbit',
+            'deskripsi' => 'deskripsi',
+            'cover' => 'cover',
+            'stok' => 10,
+            'tahun_terbit' => '2022'
+        ]);
     }
 }
