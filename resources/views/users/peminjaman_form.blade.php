@@ -6,7 +6,7 @@
         <h5 class="mb-0">Form Buku</h5>
       </div>
       <div class="card-body">
-        <form method="POST" action="{{ route('peminjaman.user.store') }}">
+        <form method="POST" action="">
             @csrf
           <div class="row mb-3">
                 <label class="col-sm-2 col-form-label" for="judul" hidden>Id User</label>
@@ -23,7 +23,7 @@
           <div class="row mb-3">
                 <label class="col-sm-2 col-form-label" for="judul">Judul Buku</label>
             <div class="col-sm-10">
-              <input type="text" name="id_buku" class="form-control" id="judul" value="{{ $upinjam->judul }}" disabled>
+                <label class="col-sm-2 col-form-label" for="judul">{{ $upinjam->judul }}</label>
             </div>
           </div>
           <div class="row mb-3">

@@ -90,7 +90,7 @@
             <span class="menu-header-text">Users</span>
         </li>
         <li class="menu-item">
-            <a href="icons-boxicons.html" class="menu-link">
+            <a href="{{ route('user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-circle"></i>
                 <div data-i18n="Boxicons">Data Peminjam</div>
             </a>

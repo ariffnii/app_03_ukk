@@ -98,8 +98,8 @@ class BukuController extends Controller
 
         if($request->hasFile('cover')) {
             $cover = $request->file('cover');
-            $cover->storeAs('public/sneat/assets/img/buku', $cover->hashName());
-            Storage::delete('public/sneat/assets/img/buku/'.$buku->cover);
+            $cover->storeAs('public/cover_book', $cover->hashName());
+            Storage::delete('public/cover_book'.$buku->cover);
 
             $buku->update([
                 'judul' => $request->judul,

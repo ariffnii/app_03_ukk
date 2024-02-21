@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\CategoriesController;
@@ -42,6 +43,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('beranda', [BerandaAdminController::class, 'index'])->name('admin.beranda');
     Route::resource('buku', BukuController::class)->names('buku');
     Route::resource('pegawai', PegawaiController::class)->names('pegawai');
+    Route::resource('user', UserController::class)->names('user');
 });
 
 //officer
