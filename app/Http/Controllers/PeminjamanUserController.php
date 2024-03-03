@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Buku;
 use App\Models\User;
+use App\Models\Struk;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Toaster;
 
 class PeminjamanUserController extends Controller
 {
@@ -15,7 +18,7 @@ class PeminjamanUserController extends Controller
      */
     public function index()
     {
-        $upinjam = Peminjaman::where('id_user', Auth::user()->id)->get();
+        $upinjam = Peminjaman::where('id_user', Auth::user()->id)->latest()->paginate(15);
         return view('users.peminjaman_index', compact('upinjam'));
     }
 
@@ -23,11 +26,11 @@ class PeminjamanUserController extends Controller
      * Show the form for creating a new resource.
      */
 
-    public function create($id)
+    public function create(string $id)
     {
-        $upinjams = User::findorFail($id);
-        $upinjam = Buku::findorFail($id);
-        return view('users.peminjaman_form', compact('upinjam', 'upinjams'));
+        $user = User::findorFail(Auth::id());
+        $buku = Buku::findorFail($id);
+        return view('users.peminjaman_form', compact('user', 'buku'));
     }
 
     /**
@@ -39,19 +42,26 @@ class PeminjamanUserController extends Controller
             'id_buku' => 'required',
             'id_user' => 'required',
             'tgl_pinjam' => 'required|date',
-            'tgl_kembali' => 'required|date',
             'status' => 'required',
             'jumlah' => 'required|numeric'
         ]);
-        Peminjaman::create([
+        $tgl_kembali = Carbon::parse($request->tgl_pinjam)->addDays(7)->toDateTimeString();
+        $peminjaman = Peminjaman::create([
             'id_buku' => $request->id_buku,
             'id_user' => $request->id_user,
             'tgl_pinjam' => $request->tgl_pinjam,
-            'tgl_kembali' => $request->tgl_kembali,
+            'tgl_kembali' => $tgl_kembali,
             'status' => $request->status,
             'jumlah' => $request->jumlah
         ]);
-        return redirect()->route('peminjaman.user.index')->with(['success' => 'Data peminjaman buku berhasil ditambahkan']);
+        $buku = Buku::findorFail($request->id_buku);
+        $buku->stock -= $request->jumlah;
+        $buku->save();
+        Struk::create([
+            'id_peminjaman' => $peminjaman->id
+        ]);
+        alert('Data peminjaman buku berhasil ditambahkan', 'success');
+        return redirect()->route('peminjaman.user')->with(['success' => 'Data peminjaman buku berhasil ditambahkan']);
     }
 
     /**
@@ -59,7 +69,9 @@ class PeminjamanUserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $upinjam = Peminjaman::findorFail($id);
+        $buku = Buku::findorFail($upinjam->id_buku);
+        return view('users.peminjaman_show', compact('upinjam', 'buku'));
     }
 
     /**

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Koleksi;
-use App\Http\Requests\StoreKoleksiRequest;
-use App\Http\Requests\UpdateKoleksiRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KoleksiController extends Controller
 {
@@ -13,7 +13,9 @@ class KoleksiController extends Controller
      */
     public function index()
     {
-        //
+        $koleksi = Koleksi::where('id_user', Auth::user()->id)->get();
+        confirmDelete('Koleksi', 'Anda Yakin Ingin Menghapus Data Ini?');
+        return view('users.koleksi.koleksi_index', compact('koleksi'));
     }
 
     /**
@@ -27,15 +29,34 @@ class KoleksiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreKoleksiRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'id_buku' => 'required',
+            'id_user' => 'required'
+        ]);
+
+        $koleksi = Koleksi::where('id_buku', $request->id_buku)
+            ->where('id_user', $request->id_user)
+            ->first();
+
+        if ($koleksi) {
+            return redirect()->back()->with(['warning' => 'Buku sudah ada dalam koleksi Anda!']);
+        }
+
+        Koleksi::create([
+            'id_buku' => $request->id_buku,
+            'id_user' => $request->id_user
+        ]);
+        toast('Data koleksi buku berhasil ditambahkan', 'success');
+        return redirect()->route('deskripsi.show', $request->id_buku);
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show(Koleksi $koleksi)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +64,7 @@ class KoleksiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Koleksi $koleksi)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +72,7 @@ class KoleksiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKoleksiRequest $request, Koleksi $koleksi)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,8 +80,11 @@ class KoleksiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Koleksi $koleksi)
+    public function destroy(string $id)
     {
-        //
+        $koleksi = Koleksi::findorfail($id);
+        $koleksi->delete();
+        toast('Data koleksi buku berhasil dihapus', 'success');
+        return redirect()->route('koleksi.index');
     }
 }

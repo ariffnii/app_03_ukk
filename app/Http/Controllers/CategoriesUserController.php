@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class CategoriesUserController extends Controller
@@ -12,7 +12,7 @@ class CategoriesUserController extends Controller
      */
     public function index()
     {
-        $categories = Buku::all();
+        $categories = Kategori::with(['kategoriBuku.buku'])->get();
         return view('pages.categories', compact('categories'));
     }
 

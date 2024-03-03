@@ -7,15 +7,15 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
-{   
+{
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
         User::create([
-            'name' => 'User1',
-            'email' => 'user1@gmail.com',
+            'name' => 'User',
+            'email' => 'user@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'user',
             'telepon' => '081234567890',
@@ -30,8 +30,8 @@ class UserSeeder extends Seeder
             'alamat' => 'Jl. user',
         ]);
         User::create([
-            'name' => 'Admin2',
-            'email' => 'admin2@gmail.com',
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'admin',
             'telepon' => '081234567890',

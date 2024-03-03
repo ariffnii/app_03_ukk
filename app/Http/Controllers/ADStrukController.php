@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
+use App\Models\Struk;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
-class PeminjamanControler extends Controller
+class ADStrukController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $struk = Struk::paginate(15);
+        confirmDelete('Struk', 'Anda Yakin Ingin Menghapus Data Ini?');
+        return view('admin.struk.struk_index', compact('struk'));
     }
 
     /**
@@ -19,7 +24,7 @@ class PeminjamanControler extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -35,7 +40,10 @@ class PeminjamanControler extends Controller
      */
     public function show(string $id)
     {
-        //
+        $struk = Struk::findorFail($id);
+        $peminjaman = Peminjaman::findorFail($struk->id_peminjaman);
+        $buku = Buku::findorFail($peminjaman->id_buku);
+        return view('users.struk_show', compact('struk', 'peminjaman', 'buku'));
     }
 
     /**
@@ -59,6 +67,9 @@ class PeminjamanControler extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $struk = Struk::findorFail($id);
+        $struk->delete();
+        toast('Data struk buku berhasil dihapus', 'success');
+        return redirect()->route('struk.index');
     }
 }

@@ -1,17 +1,58 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="row">
+        <div class="col-3">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    <div class="d-flex align-items-center mb-2 pb-1">
+                        <div class="avatar me-2">
+                            <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-book"></i></span>
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                        <h4 class="ms-1 mb-0">{{ $buku }}</h4>
+                    </div>
+                    <p class="mb-1">Buku</p>
                 </div>
             </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2 pb-1">
+                        <div class="avatar me-2">
+                            <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-book"></i></span>
+                        </div>
+                        <h4 class="ms-1 mb-0">{{ $kategori }}</h4>
+                    </div>
+                    <p class="mb-1">Kategori</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2 pb-1">
+                        <div class="avatar me-2">
+                            <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck"></i></span>
+                        </div>
+                        <h4 class="ms-1 mb-0">{{ $peminjaman }}</h4>
+                    </div>
+                    <p class="mb-1">Peminjaman</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2 pb-1">
+                        <div class="avatar me-2">
+                            <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck"></i></span>
+                        </div>
+                        <h4 class="ms-1 mb-0">{{ $user }}</h4>
+                    </div>
+                    <p class="mb-1">Peminjam</p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

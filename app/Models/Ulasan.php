@@ -2,19 +2,27 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Ulasan extends Model
 {
-    use HasFactory, Notifiable, HasApiTokens;
-    protected $table = ['ulasan'];
-    protected $primaryKey = ['id'];
-    protected $guarded = ['id'];
+    use HasFactory;
+
     protected $fillable = [
+        'id_buku',
+        'id_user',
         'ulasan',
-        'rating'
+        'rating',
     ];
+
+    public function buku()
+    {
+        return $this->belongsTo(Buku::class, 'id_buku', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
 }

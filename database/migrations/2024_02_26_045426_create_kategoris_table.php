@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('struk', function (Blueprint $table) {
+        Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_peminjaman');
-            $table->foreign('id_peminjaman')->references('id')->on('peminjamen');
+            $table->string('nm_kategori');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('struk');
+        Schema::dropIfExists('kategoris');
     }
 };

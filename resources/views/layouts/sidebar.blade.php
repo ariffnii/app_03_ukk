@@ -54,8 +54,8 @@
     @if (Auth::user()->role == 'admin')
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item">
-            <a href="" class="menu-link">
+        <li class="menu-item {{ Route::is('admin.beranda') ? 'active' : '' }}">
+            <a href="{{ route('admin.beranda') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -65,40 +65,58 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Buku</span>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Route::is('buku.*') ? 'active' : '' }}">
             <a href="{{ route('buku.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book"></i>
                 <div data-i18n="Basic">Data Buku</div>
             </a>
         </li>
-        <!-- Produk -->
+        <!-- Customers Service -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Peminjaman</span></li>
-        <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+        <li class="menu-item {{ Route::is('peminjaman.*') ? 'active' : '' }}">
+            <a href="{{ route('peminjaman.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-list-ul"></i>
                 <div data-i18n="Basic">Data Peminjaman</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="icons-boxicons.html" class="menu-link">
+        <li class="menu-item {{ Route::is('struk.*') ? 'active' : '' }}">
+            <a href="{{ route('struk.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-receipt"></i>
                 <div data-i18n="Boxicons">Data Struk</div>
             </a>
         </li>
-        <!--Costumer service-->
+        {{-- Kategori --}}
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Kategori</span></li>
+        <li class="menu-item {{ Route::is('kategori.*') ? 'active' : '' }}">
+            <a href="{{ route('kategori.index') }}" class="menu-link">
+                <i class="menu-icon bi bi-filter-square"></i>
+                <div data-i18n="Basic">Kategori Buku</div>
+            </a>
+        </li>
+        <!--Users-->
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Users</span>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Route::is('user.*') ? 'active' : '' }}">
             <a href="{{ route('user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-circle"></i>
                 <div data-i18n="Boxicons">Data Peminjam</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Route::is('pegawai.*') ? 'active' : '' }}">
             <a href="{{ route('pegawai.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-plus"></i>
                 <div data-i18n="Boxicons">Data Pegawai</div>
+            </a>
+        </li>
+        <!--Account-->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Account</span>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('logout') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-log-out"></i>
+                <div data-i18n="Boxicons">Log Out</div>
             </a>
         </li>
     </ul>
@@ -159,20 +177,27 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="{{ route('user.dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Peminjaman</span></li>
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Buku</span></li>
         <li class="menu-item">
-            <a href="{{ route('peminjaman.user.index') }}" class="menu-link">
+            <a href="{{ route('koleksi.index') }}" class="menu-link">
+                <i class="menu-icon bi bi-collection"></i>
+                <div data-i18n="Basic">Koleksi</div>
+            </a>
+        </li>
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Peminjaman</span></li>
+        <li class="menu-item {{ Route::is('peminjaman.*') ? 'active' : '' }}">
+            <a href="{{ route('peminjaman.user') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-list-ul"></i>
                 <div data-i18n="Basic">Data Peminjaman</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="icons-boxicons.html" class="menu-link">
+        <li class="menu-item {{ Route::is('struk-user.*') ? 'active' : '' }}">
+            <a href="{{ route('struk-user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-receipt"></i>
                 <div data-i18n="Boxicons">Data Struk</div>
             </a>

@@ -17,8 +17,6 @@ return new class extends Migration
             $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedBigInteger('id_buku');
             $table->foreign('id_buku')->references('id')->on('bukus');
-            $table->unsignedBigInteger('id_bookmark')->nullable();
-            $table->foreign('id_bookmark')->references('id')->on('bookmark');
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
             $table->integer('jumlah');

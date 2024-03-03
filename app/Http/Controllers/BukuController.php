@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,11 +16,9 @@ class BukuController extends Controller
 
     public function index(): View
     {
-        //get posts
         $buku = Buku::latest()->paginate(15);
-
-        //render view with posts
-        return view('admin.buku_index', compact('buku'));
+        confirmDelete('Buku', 'Anda Yakin Ingin Menghapus Data Ini?');
+        return view('admin.buku.buku_index', compact('buku'));
     }
 
     /**
@@ -27,7 +26,8 @@ class BukuController extends Controller
      */
     public function create()
     {
-        return view('admin.buku_form');
+        $kategori = Kategori::all();
+        return view('admin.buku.buku_form', compact('kategori'));
     }
 
     /**
@@ -42,22 +42,26 @@ class BukuController extends Controller
             'tahun_terbit' => 'required',
             'cover' => 'required|mimes:png,jpg,jpeg',
             'deskripsi' => 'required',
-            'kategori' => 'required|in:fiksi,non_fiksi',
+            'kategori' => 'required|array',
             'stock' => 'required|numeric',
+            'status' => 'required|in:aktif,tdk_aktif',
         ]);
         $cover = $request->file('cover');
-        $cover->storeAs('public/cover_book', $cover->hashName());
-        Buku::create([
+        $cover->storeAs('public', $cover->hashName());
+        $dataBuku = Buku::create([
             'judul' => $request->judul,
             'penulis' => $request->penulis,
             'penerbit' => $request->penerbit,
             'tahun_terbit' => $request->tahun_terbit,
             'cover' => $cover->hashName(),
             'deskripsi' => $request->deskripsi,
-            'kategori' => $request->kategori,
             'stock' => $request->stock,
+            'status' => $request->status
         ]);
-        return redirect()->route('buku.index')->with(['success' => 'Data buku berhasil ditambahkan']);
+        $dataBuku->kategori()->attach($request->input('kategori'));
+        $dataBuku->save();
+        alert('Data buku berhasil ditambahkan', 'success');
+        return redirect()->route('buku.index');
     }
 
     /**
@@ -66,7 +70,8 @@ class BukuController extends Controller
     public function show(string $id)
     {
         $buku = Buku::findorFail($id);
-        return view();
+        $kategori = $buku->kategori;
+        return view('admin.buku.buku_show', compact('buku', 'kategori'));
     }
 
     /**
@@ -75,7 +80,8 @@ class BukuController extends Controller
     public function edit(string $id)
     {
         $buku = Buku::findorFail($id);
-        return view('admin.buku_edit', compact('buku'));
+        $kategori = Kategori::all();
+        return view('admin.buku.buku_edit', compact('buku', 'kategori'));
     }
 
     /**
@@ -88,18 +94,20 @@ class BukuController extends Controller
             'penulis' => 'required',
             'penerbit' => 'required',
             'tahun_terbit' => 'required',
-            'cover' => 'required|mimes:png,jpg,jpeg',
+            'cover' => 'image|mimes:png,jpg,jpeg',
             'deskripsi' => 'required',
-            'kategori' => 'required|in:fiksi,non_fiksi',
+            'kategori' => 'required|array',
             'stock' => 'required|numeric',
+            'status' => 'required|in:aktif,tdk_aktif',
         ]);
 
         $buku =  Buku::findorFail($id);
 
-        if($request->hasFile('cover')) {
+        if ($request->hasFile('cover')) {
             $cover = $request->file('cover');
-            $cover->storeAs('public/cover_book', $cover->hashName());
-            Storage::delete('public/cover_book'.$buku->cover);
+            $cover->storeAs('public', $cover->hashName());
+
+            Storage::delete('public' . $buku->cover);
 
             $buku->update([
                 'judul' => $request->judul,
@@ -108,9 +116,10 @@ class BukuController extends Controller
                 'tahun_terbit' => $request->tahun_terbit,
                 'cover' => $cover->hashName(),
                 'deskripsi' => $request->deskripsi,
-                'kategori' => $request->kategori,
                 'stock' => $request->stock,
+                'status' => $request->status
             ]);
+            $buku->kategori()->sync($request->input('kategori'));
         } else {
             $buku->update([
                 'judul' => $request->judul,
@@ -118,11 +127,12 @@ class BukuController extends Controller
                 'penerbit' => $request->penerbit,
                 'tahun_terbit' => $request->tahun_terbit,
                 'deskripsi' => $request->deskripsi,
-                'kategori' => $request->kategori,
                 'stock' => $request->stock,
+                'status' => $request->status
             ]);
+            $buku->kategori()->sync($request->input('kategori'));
         }
-        return redirect()->route('buku.index')->with(['success' => 'Data buku berhasil diperbarui']);
+        return redirect()->route('buku.index');
     }
 
     /**
@@ -131,8 +141,9 @@ class BukuController extends Controller
     public function destroy(string $id)
     {
         $buku = Buku::findorFail($id);
-        Storage::delete('public/sneat/assets/img/buku'. $buku->cover);
+        Storage::delete('public' . $buku->cover);
+        $buku->kategori()->detach();
         $buku->delete();
-        return redirect()->route('buku.index')->with(['success' => 'Data buku berhasil dihapus']);
+        return redirect()->route('buku.index');
     }
 }

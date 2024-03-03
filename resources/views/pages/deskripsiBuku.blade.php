@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <nav class="navbar navbar-expand-lg" id="navbar">
         <div class="container-fluid">
             <a class="navbar-brand text-light" href="#">L-Books</a>
@@ -30,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Home</a>
+                        <a class="nav-link text-light" href="{{ route('user.beranda') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="#">About</a>
@@ -39,7 +40,7 @@
                         <a class="nav-link text-light" href="">Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="">Categories</a>
+                        <a class="nav-link text-light" href="{{ route('categories.index') }}">Categories</a>
                     </li>
                 </ul>
                 <li class="nav-item navbar-dropdown">
@@ -76,7 +77,7 @@
                         </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}">
-                                <box-icon name='power-off' class="me-2 align-middle" ></box-icon>
+                                <box-icon name='power-off' class="me-2 align-middle"></box-icon>
                                 <span class="align-middle">Log Out</span>
                             </a>
                         </li>
@@ -91,16 +92,25 @@
                 <div class="col-3" style="padding-top: 154px">
                     <div class="cover1">
                         <a href="/dashboard">
-                            <img src="{{ asset('storage/cover_book/'. $dbuku->cover) }}" alt="">
+                            <img src="{{ asset('storage/' . $dbuku->cover) }}" alt="">
                         </a>
                         <p id="judul" class="text-light">{{ $dbuku->judul }}</p>
                     </div>
+                    <div class="row">
+                        @foreach ($dbuku->kategori as $item)
+                            <div class="col-4">
+                                <p style="font-family: 'Lato', sans-serif; font-size:18px" class="text-light">
+                                    {{ $item->nm_kategori }}</p>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
                 <div class="col-9" style="padding-top: 108px; padding-left:146px">
-                    <div class="card" style="width: 756px; height:713px">
+                    <div class="card" style="width: 567px; height:713px; margin-bottom: 50px">
                         <div class="card-body" style="width: 567px; height:713px">
                             <div class="card-title" style="padding-top: 46px; padding-left:44px">
-                                <p style="font-family:'Public Sans', sans-serif; font-size:32px; text-align:left">{{ $dbuku->judul }}
+                                <p style="font-family:'Public Sans', sans-serif; font-size:32px; text-align:left">
+                                    {{ $dbuku->judul }}
                                 </p>
                             </div>
                             <div class="card-text">
@@ -156,14 +166,30 @@
                                             {{ $dbuku->stock }}</p>
                                     </div>
                                 </div>
-                                <div class="row" style="padding-top: 30px; padding-left:270px">
-                                    <div class="col-6">
-                                        <button class="btn btn-primary"
-                                            style="width: 130px; height:47px; font-family:'Public Sans', sans-serif; font-size:20px">Bookmark</button>
+                                <div class="row" style="margin-top: 30px;">
+                                    <div class="col-4">
+                                        <a class="btn btn-info text-light" href="{{ route('user.beranda') }}"
+                                            style="font-family:'Public Sans', sans-serif; font-size: 18px">Back</a>
                                     </div>
-                                    <div class="col-6">
-                                        <a href="{{ route('user.pinjam', $dbuku->id) }}" class="btn btn-primary"
-                                            style="width: 130px; height:47px; font-family:'Public Sans', sans-serif; font-size:20px">Pinjam</a>
+                                    <div class="col-4">
+                                        <form
+                                            action="{{ route('koleksi.store', ['id_buku' => $dbuku->id, 'id_user' => Auth::user()->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            <button class="btn btn-primary" type="submit"
+                                                style="font-family:'Public Sans', sans-serif; font-size: 18px">Koleksi</button>
+                                        </form>
+                                        @if (session('warning'))
+                                            <div class="alert alert-warning mt-2">{{ session('warning') }}</div>
+                                        @endif
+                                        @if ($errors->has('id_buku'))
+                                            <div class="alert alert-danger mt-2">{{ $errors->first('id_buku') }}</div>
+                                        @endif
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="{{ route('peminjaman.user.create.form', $dbuku->id) }}"
+                                            class="btn btn-primary"
+                                            style="font-family:'Public Sans', sans-serif; margin-left: -170px; font-size: 18px">Pinjam</a>
                                     </div>
                                 </div>
                             </div>
@@ -172,48 +198,48 @@
                 </div>
             </div>
         </div>
-    </div>
-    <footer style="background-color: #696CFF; height:204px">
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <p class="text-light"
-                        style="font-size: 48px; margin-top:72px; font-family:'Lexend Exa', sans-serif">L-Books</p>
-                </div>
-                <div class="col-5">
-                    <p class="text-light" style="font-size: 18px; margin-top:152px; font-family:'Lato', sans-serif">
-                        Copyright ©
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                        L-Books All Rights Reserved
-                    </p>
-                </div>
-                <div class="col-3 text-light" style="font-family:'Public Sans', sans-serif">
-                    <p style="font-size: 24px; margin-top:37px">Kontak Kami</p>
-                    <div class="row" style="margin-top: 5px">
-                        <div class="col-4">
-                            <p style="font-size: 20px">Email</p>
-                        </div>
-                        <div class="col-8" style="margin-top:5px">
-                            <p style="font-size: 15px">L-Books@gmail.com</p>
-                        </div>
+        <footer style="background-color: #696CFF; height:204px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <p class="text-light"
+                            style="font-size: 48px; margin-top:72px; font-family:'Lexend Exa', sans-serif">L-Books</p>
                     </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <p style="font-size: 20px; margin-top:5px">Social</p>
+                    <div class="col-5">
+                        <p class="text-light"
+                            style="font-size: 18px; margin-top:152px; font-family:'Lato', sans-serif">
+                            Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            L-Books All Rights Reserved
+                        </p>
+                    </div>
+                    <div class="col-3 text-light" style="font-family:'Public Sans', sans-serif">
+                        <p style="font-size: 24px; margin-top:37px">Kontak Kami</p>
+                        <div class="row" style="margin-top: 5px">
+                            <div class="col-4">
+                                <p style="font-size: 20px">Email</p>
+                            </div>
+                            <div class="col-8" style="margin-top:5px">
+                                <p style="font-size: 15px">L-Books@gmail.com</p>
+                            </div>
                         </div>
-                        <div class="col-8" style="color:white; font-size:25px;">
-                            <i class="bi bi-facebook" style="margin-right:10px"></i>
-                            <i class="bi bi-twitter-x" style="margin-right:10px"></i>
-                            <i class="bi bi-instagram"></i>
+                        <div class="row">
+                            <div class="col-4">
+                                <p style="font-size: 20px; margin-top:5px">Social</p>
+                            </div>
+                            <div class="col-8" style="color:white; font-size:25px;">
+                                <i class="bi bi-facebook" style="margin-right:10px"></i>
+                                <i class="bi bi-twitter-x" style="margin-right:10px"></i>
+                                <i class="bi bi-instagram"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
 </body>

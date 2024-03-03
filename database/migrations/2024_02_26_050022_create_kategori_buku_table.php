@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookmark', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedBigInteger('id_buku');
-            $table->foreign('id_buku')->references('id')->on('bukus');
+        Schema::create('kategori_buku', function (Blueprint $table) {
+            $table->unsignedBigInteger('buku_id');
+            $table->foreign('buku_id')->references('id')->on('bukus');
+            $table->unsignedBigInteger('kategori_id');
+            $table->foreign('kategori_id')->references('id')->on('kategoris');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookmark');
+        Schema::dropIfExists('kategori_buku');
     }
 };

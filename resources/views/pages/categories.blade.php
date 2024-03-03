@@ -30,67 +30,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="{{ route('index') }}">Home</a>
+                        <a class="nav-link text-light" href="{{ route('user.beranda') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="{{ route('index') }}">Books</a>
+                        <a class="nav-link text-light" href="">Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="">Categories</a>
+                        <a class="nav-link text-light" href="{{ route('categories.index') }}">Categories</a>
                     </li>
                 </ul>
-                @if (Route::has('login'))
-                @auth
-                <li class="nav-item navbar-dropdown">
-                    <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('sneat/assets/img/icons/user-w.png') }}" alt=""
-                            class="rounded-circle" style="width: 50px; height:50px; margin-bottom:20px;">
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <div class="d-flex">
-                                    <div class="flex me-3">
-                                        <img src="{{ asset('sneat/assets/img/icons/user.png') }}" alt=""
-                                            class="rounded-circle" style="width: 50px; height:50px">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <span class="fw-medium d-block">{{ Auth::user()->name }}</span>
-                                        <small class="text-muted">{{ Auth::user()->role }}</small>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <box-icon type='solid' class="me-2 align-middle" name='dashboard'></box-icon>
-                                <span class="align-middle">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('logout') }}">
-                                <box-icon name='power-off' class="me-2 align-middle" ></box-icon>
-                                <span class="align-middle">Log Out</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                @else
                 <div class="d-flex">
                     <a href="{{ route('login') }}" type="button" class="btn me-3 btn-outline-light">Login</a>
                     <a href="{{ route('register') }}" type="button" class="btn me-3 btn-outline-light">Register</a>
                 </div>
-                @endauth
-                @endif
             </div>
         </div>
     </nav>
@@ -99,33 +54,22 @@
             <div class="books">
                 <p style="font-size: 32px" class="text-center text-light">Categories</p>
             </div>
-            <div class="row" style="padding-top: 46px;">
-                <p style="font-size: 24px; font-family:'Public Sans', sans-serif; padding-bottom: 41px" class="text-light">Fiksi</p>
-                @foreach ($categories->where('kategori', 'fiksi')->take(4) as $item)
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="{{ route('deskripsi.show', $item->id) }}">
-                            <img src="{{ asset('storage/cover_book/'. $item->cover) }}" alt="">
-                        </a>
-                        <p id="judul" class="text-light">{{ $item->judul }}</p>
-                    </div>
+            @foreach ($categories as $category)
+                <div class="row" style="padding-top: 46px;">
+                    <p style="font-size: 24px; font-family:'Public Sans', sans-serif; padding-bottom: 41px"
+                        class="text-light">{{ $category->nm_kategori }}</p>
+                    @foreach ($category->kategoriBuku as $kategoriBuku)
+                        <div class="col-3">
+                            <div class="cover1">
+                                <a href="{{ route('deskripsi.show', $kategoriBuku->buku->id) }}">
+                                    <img src="{{ asset('storage/' . $kategoriBuku->buku->cover) }}" alt="">
+                                </a>
+                                <p id="judul" class="text-light">{{ $kategoriBuku->buku->judul }}</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                @endforeach
-            </div>
-            <div class="row" style="padding-top: 53px; padding-bottom:76px">
-                <p style="font-size: 24px; font-family:'Public Sans', sans-serif; padding-bottom: 41px" class="text-light">Non Fiksi</p>
-                @foreach ($categories->where('kategori', 'non_fiksi')->take(4) as $item)
-                <div class="col-3">
-                    <div class="cover1">
-                        <a href="{{ route('deskripsi.show', $item->id) }}">
-                            <img src="{{ asset('storage/cover_book/'. $item->cover) }}" alt="">
-                        </a>
-                        <p id="judul" class="text-light">{{ $item->judul }}</p>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-
+            @endforeach
         </div>
     </div>
     <footer style="background-color: #696CFF; height:204px">

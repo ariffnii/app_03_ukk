@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $dataUser = User::where('role', 'user')->latest()->paginate(15);
-        return view('admin.user_index', compact('dataUser'));
+        return view('admin.user.user_index', compact('dataUser'));
     }
 
     /**
@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user_form');
+        return view('admin.user.user_form');
     }
 
     /**
@@ -62,7 +62,7 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $dataUser = User::findOrFail($id);
-        return view('admin.user_edit', compact('dataUser'));
+        return view('admin.user.user_edit', compact('dataUser'));
     }
 
     /**

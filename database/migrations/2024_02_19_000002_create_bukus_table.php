@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('tahun_terbit');
             $table->string('cover');
             $table->string('deskripsi');
-            $table->enum('kategori', ['fiksi', 'non_fiksi']);
             $table->integer('stock');
+            $table->enum('status', ['aktif', 'tdk_aktif']);
             $table->timestamps();
         });
     }

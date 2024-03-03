@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Struk;
-use App\Http\Requests\StoreStrukRequest;
-use App\Http\Requests\UpdateStrukRequest;
+use Illuminate\Http\Request;
 
 class StrukController extends Controller
 {
@@ -27,7 +25,7 @@ class StrukController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStrukRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -35,7 +33,7 @@ class StrukController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Struk $struk)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +41,7 @@ class StrukController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Struk $struk)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +49,7 @@ class StrukController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStrukRequest $request, Struk $struk)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,7 +57,7 @@ class StrukController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Struk $struk)
+    public function destroy(string $id)
     {
         //
     }

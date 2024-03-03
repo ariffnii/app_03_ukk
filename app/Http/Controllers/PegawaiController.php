@@ -13,7 +13,7 @@ class PegawaiController extends Controller
     public function index()
     {
         $dataPegawai = User::where('role', '<>', 'user')->latest()->paginate(15);
-        return view('admin.pegawai_index', compact('dataPegawai'));
+        return view('admin.pegawai.pegawai_index', compact('dataPegawai'));
     }
 
     /**
@@ -21,7 +21,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('admin.pegawai_form');
+        return view('admin.pegawai.pegawai_form');
     }
 
     /**
@@ -62,7 +62,7 @@ class PegawaiController extends Controller
     public function edit(String $id)
     {
         $dataPegawai = User::findOrFail($id);
-        return view('admin.pegawai_edit', compact('dataPegawai'));
+        return view('admin.pegawai.pegawai_edit', compact('dataPegawai'));
     }
 
     /**

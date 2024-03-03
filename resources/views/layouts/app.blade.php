@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
     data-assets-path="../assets/" data-template="vertical-menu-template-free">
+
 <head>
     @include('layouts.header')
     @include('partials.links')
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -29,6 +31,7 @@
 
                     <!-- / Footer -->
                     <div class="content-backdrop fade"></div>
+                    @include('layouts.footer')
                 </div>
                 <!-- Content wrapper -->
             </div>
@@ -40,4 +43,5 @@
     <!-- / Layout wrapper -->
     @include('partials.script')
 </body>
+
 </html>

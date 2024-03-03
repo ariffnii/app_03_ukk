@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ulasan;
-use App\Http\Requests\StoreUlasanRequest;
-use App\Http\Requests\UpdateUlasanRequest;
+use Illuminate\Http\Request;
 
 class UlasanController extends Controller
 {
@@ -27,7 +25,7 @@ class UlasanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUlasanRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -35,7 +33,7 @@ class UlasanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ulasan $ulasan)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +41,7 @@ class UlasanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ulasan $ulasan)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +49,7 @@ class UlasanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUlasanRequest $request, Ulasan $ulasan)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,7 +57,7 @@ class UlasanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ulasan $ulasan)
+    public function destroy(string $id)
     {
         //
     }

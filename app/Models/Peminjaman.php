@@ -10,6 +10,8 @@ class Peminjaman extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_user',
+        'id_buku',
         'tgl_pinjam',
         'tgl_kembali',
         'jumlah',
@@ -20,15 +22,11 @@ class Peminjaman extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function bookmark(){
-        return $this->belongsTo(Bookmark::class, 'id_bookmark')->withDefault();
-    }
-
     public function struk(){
-        return $this->hasMany(Struk::class);
+        return $this->belongsTo(Struk::class, 'id_peminjaman', 'id_struk');
     }
 
     public function buku(){
-        return $this->beLongsToMany(Buku::class, 'id_buku');
+        return $this->belongsTo(Buku::class, 'id_buku');
     }
 }
