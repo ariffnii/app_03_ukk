@@ -19,13 +19,13 @@
                             <td class="text-center">{{ $item->jumlah }}</td>
                             <td class="text-center">
                                 @csrf
-                                <a href="{{ route('peminjaman.show', $item->id) }}" class="btn btn-info">
+                                <a href="{{ route('peminjaman.show', $item->id) }}" class="btn btn-sm btn btn-info">
                                     <i class="bi bi-eye"></i>
                                     Detail</a>
-                                <a href="{{ route('peminjaman.edit', $item->id) }}" class="btn btn-warning">
+                                <a href="{{ route('peminjaman.edit', $item->id) }}" class="btn btn-sm btn btn-warning">
                                     <i class="bi bi-pencil-square"></i>
                                     Edit</a>
-                                <a href="{{ route('peminjaman.destroy', $item->id) }}" data-confirm-delete="true" class="btn btn-danger">
+                                <a href="{{ route('peminjaman.destroy', $item->id) }}" data-confirm-delete="true" class="btn btn-sm btn btn-danger">
                                     <i class="bi bi-trash"></i>
                                     Delete</a>
                             </td>

@@ -12,7 +12,7 @@ class LandingController extends Controller
      */
     public function index()
     {
-        $dbuku = Buku::all();
+        $dbuku = Buku::where('status', 'aktif')->get();
         return view('pages.landing-page', compact('dbuku'));
     }
 
@@ -37,7 +37,10 @@ class LandingController extends Controller
      */
     public function show(string $id)
     {
-        $dbuku = Buku::findorFail($id);
+        $dbuku = Buku::with('ulasan')->findorFail($id);
+        // menghitung rata rata rating buku
+        $dbuku->rating = $dbuku->ulasan->avg('rating');
+
         return view('pages.deskripsiBuku', compact('dbuku'));
     }
 

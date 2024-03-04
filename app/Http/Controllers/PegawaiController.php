@@ -13,6 +13,7 @@ class PegawaiController extends Controller
     public function index()
     {
         $dataPegawai = User::where('role', '<>', 'user')->latest()->paginate(15);
+        confirmDelete('Pegawai', 'Anda Yakin Ingin Menghapus Data Ini?');
         return view('admin.pegawai.pegawai_index', compact('dataPegawai'));
     }
 
@@ -45,7 +46,8 @@ class PegawaiController extends Controller
             'password' => bcrypt($request->password),
             'role' => $request->role,
         ]);
-        return redirect()->route('pegawai.index')->with(['success' => 'Data pegawai berhasil ditambahkan']);
+        toast('Data pegawai berhasil ditambahkan', 'success');
+        return redirect()->route('pegawai.index');
     }
 
     /**
@@ -86,7 +88,8 @@ class PegawaiController extends Controller
             'password' => bcrypt($request->password),
             'role' => $request->role,
         ]);
-        return redirect()->route('pegawai.index')->with(['success' => 'Data pegawai berhasil diubah']);
+        toast('Data pegawai berhasil diubah', 'success');
+        return redirect()->route('pegawai.index');
     }
 
     /**
@@ -96,6 +99,6 @@ class PegawaiController extends Controller
     {
         $dataPegawai = User::findOrFail($id);
         $dataPegawai->delete();
-        return redirect()->route('pegawai.index')->with(['success' => 'Data pegawai berhasil dihapus']);
+        return redirect()->route('pegawai.index');
     }
 }

@@ -13,7 +13,7 @@ class CategoriesUserController extends Controller
     public function index()
     {
         $categories = Kategori::with(['kategoriBuku.buku'])->get();
-        return view('pages.categories', compact('categories'));
+        return view('users.categories', compact('categories'));
     }
 
     /**

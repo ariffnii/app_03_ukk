@@ -31,13 +31,13 @@
                                 <form action="{{ route('buku.destroy', $item->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <a href="{{ route('buku.show', $item->id) }}" class="btn btn-info">
+                                    <a href="{{ route('buku.show', $item->id) }}" class="btn btn-sm btn btn-info">
                                         <i class="bi bi-eye"></i>
                                         Detail</a>
-                                    <a href="{{ route('buku.edit', $item->id) }}" class="btn btn-warning">
+                                    <a href="{{ route('buku.edit', $item->id) }}" class="btn btn-sm btn btn-warning">
                                         <i class="bi bi-pencil-square"></i>
                                         Edit</a>
-                                    <button type="submit" data-confirm-delete="true" class="btn btn-danger">
+                                    <button type="submit" data-confirm-delete="true" class="btn btn-sm btn btn-danger">
                                         <i class="bi bi-trash"></i>
                                         Delete</button>
                                 </form>

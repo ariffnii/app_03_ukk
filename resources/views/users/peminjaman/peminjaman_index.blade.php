@@ -25,7 +25,12 @@
                             <td class="text-center">{{ $item->jumlah }}</td>
                             <td class="text-center">{{ $item->status }}</td>
                             <td class="text-center">
-                                <a href="{{ route('peminjaman.user.show', $item->id) }}" class="btn btn-info">
+                                @if ($item->status == 'dikembalikan')
+                                    <a href="{{ route('ulasan.form', $item->id_buku) }}" class="btn btn-sm btn btn-success">
+                                        <i class="bi bi-pencil"></i>
+                                        Ulas Buku</a>
+                                @endif
+                                <a href="{{ route('peminjaman.user.show', $item->id) }}" class="btn btn-sm btn btn-info">
                                     <i class="bi bi-eye"></i>
                                     Detail</a>
                             </td>

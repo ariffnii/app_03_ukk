@@ -117,13 +117,16 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="kategori">Status Aktif</label>
                         <div class="col-sm-10">
-                            <select id="kategori" name="status" class="form-select form-control">
-                                <option>Pilih Status</option>
-                                <option value="aktif" {{ $buku->status == 'aktif' ? 'selected' : '' }}>Aktif
-                                </option>
-                                <option value="tdk_aktif" {{ $buku->status == 'tdk_aktif' ? 'selected' : '' }}>Tidak Aktif
-                                </option>
-                            </select>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="active"
+                                    value="aktif" {{ $buku->status == 'aktif' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="active">Aktif</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="inactive"
+                                    value="tdk_aktif" {{ $buku->status == 'tdk_aktif' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="inactive">Tidak Aktif</label>
+                            </div>
                         </div>
                         @error('status')
                             <div class="alert alert-danger mt-2">

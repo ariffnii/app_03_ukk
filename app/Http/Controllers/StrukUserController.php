@@ -19,7 +19,7 @@ class StrukUserController extends Controller
         $struk = Struk::join('peminjamen', 'peminjamen.id', '=', 'struks.id_peminjaman')
         ->where('peminjamen.id_user', $id_user)
         ->orderBy('peminjamen.id', 'desc')->get();
-        return view('users.struk_index', compact('struk'));
+        return view('users.struk.struk_index', compact('struk'));
     }
 
     /**
@@ -46,7 +46,7 @@ class StrukUserController extends Controller
         $struk = Struk::findorFail($id);
         $peminjaman = Peminjaman::findorFail($struk->id_peminjaman);
         $buku = Buku::findorFail($peminjaman->id_buku);
-        return view('users.struk_show', compact('struk', 'peminjaman', 'buku'));
+        return view('users.struk.struk_show', compact('struk', 'peminjaman', 'buku'));
     }
 
     /**

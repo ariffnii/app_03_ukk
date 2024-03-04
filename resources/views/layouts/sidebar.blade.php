@@ -79,8 +79,8 @@
                 <div data-i18n="Basic">Data Peminjaman</div>
             </a>
         </li>
-        <li class="menu-item {{ Route::is('struk.*') ? 'active' : '' }}">
-            <a href="{{ route('struk.index') }}" class="menu-link">
+        <li class="menu-item {{ Route::is('struk-admin.*') ? 'active' : '' }}">
+            <a href="{{ route('struk-admin.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-receipt"></i>
                 <div data-i18n="Boxicons">Data Struk</div>
             </a>
@@ -177,9 +177,9 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item">
-            <a href="{{ route('user.dashboard') }}" class="menu-link">
+            <a href="{{ route('user.beranda') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Home</div>
             </a>
         </li>
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Buku</span></li>
@@ -196,8 +196,8 @@
                 <div data-i18n="Basic">Data Peminjaman</div>
             </a>
         </li>
-        <li class="menu-item {{ Route::is('struk-user.*') ? 'active' : '' }}">
-            <a href="{{ route('struk-user.index') }}" class="menu-link">
+        <li class="menu-item {{ Route::is('struk.*') ? 'active' : '' }}">
+            <a href="{{ route('struk.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-receipt"></i>
                 <div data-i18n="Boxicons">Data Struk</div>
             </a>

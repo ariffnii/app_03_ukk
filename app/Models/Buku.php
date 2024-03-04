@@ -22,6 +22,7 @@ class Buku extends Model
         'deskripsi',
         'kategori',
         'stock',
+        'status'
     ];
 
     protected $table = 'bukus';

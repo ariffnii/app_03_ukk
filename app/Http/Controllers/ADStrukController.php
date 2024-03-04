@@ -43,7 +43,7 @@ class ADStrukController extends Controller
         $struk = Struk::findorFail($id);
         $peminjaman = Peminjaman::findorFail($struk->id_peminjaman);
         $buku = Buku::findorFail($peminjaman->id_buku);
-        return view('users.struk_show', compact('struk', 'peminjaman', 'buku'));
+        return view('admin.struk.struk_show', compact('struk', 'peminjaman', 'buku'));
     }
 
     /**
@@ -70,6 +70,6 @@ class ADStrukController extends Controller
         $struk = Struk::findorFail($id);
         $struk->delete();
         toast('Data struk buku berhasil dihapus', 'success');
-        return redirect()->route('struk.index');
+        return redirect()->route('struk-admin.index');
     }
 }

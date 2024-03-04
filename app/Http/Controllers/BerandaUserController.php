@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class BerandaUserController extends Controller
 {
     public function index(){
-        $dbuku = Buku::all();
+        $dbuku = Buku::all()->where('status', 'aktif');
         return view('pages.landing-page', compact('dbuku'));
     }
 

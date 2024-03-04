@@ -19,7 +19,7 @@ class PeminjamanUserController extends Controller
     public function index()
     {
         $upinjam = Peminjaman::where('id_user', Auth::user()->id)->latest()->paginate(15);
-        return view('users.peminjaman_index', compact('upinjam'));
+        return view('users.peminjaman.peminjaman_index', compact('upinjam'));
     }
 
     /**
@@ -30,7 +30,7 @@ class PeminjamanUserController extends Controller
     {
         $user = User::findorFail(Auth::id());
         $buku = Buku::findorFail($id);
-        return view('users.peminjaman_form', compact('user', 'buku'));
+        return view('users.peminjaman.peminjaman_form', compact('user', 'buku'));
     }
 
     /**
@@ -60,8 +60,8 @@ class PeminjamanUserController extends Controller
         Struk::create([
             'id_peminjaman' => $peminjaman->id
         ]);
-        alert('Data peminjaman buku berhasil ditambahkan', 'success');
-        return redirect()->route('peminjaman.user')->with(['success' => 'Data peminjaman buku berhasil ditambahkan']);
+        toast('Peminjaman buku berhasil ditambahkan', 'success');
+        return redirect()->route('peminjaman.user');
     }
 
     /**
@@ -71,7 +71,7 @@ class PeminjamanUserController extends Controller
     {
         $upinjam = Peminjaman::findorFail($id);
         $buku = Buku::findorFail($upinjam->id_buku);
-        return view('users.peminjaman_show', compact('upinjam', 'buku'));
+        return view('users.peminjaman.peminjaman_show', compact('upinjam', 'buku'));
     }
 
     /**

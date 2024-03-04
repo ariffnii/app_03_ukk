@@ -16,7 +16,10 @@ use App\Http\Controllers\BerandaUserController;
 use App\Http\Controllers\BerandaAdminController;
 use App\Http\Controllers\BerandaOfficerController;
 use App\Http\Controllers\CategoriesUserController;
+use App\Http\Controllers\DeskripsiBukuController;
 use App\Http\Controllers\PeminjamanUserController;
+use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\UlasanUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +35,8 @@ use App\Http\Controllers\PeminjamanUserController;
 //landing
 Route::prefix('/')->group(function () {
     Route::resource('/', LandingController::class);
-    Route::get('/categories', [CategoriesUserController::class, 'index'])->name('kategori.user');
+    Route::get('/categories', [CategoriesController::class, 'index'])->name('kategori.user');
+    Route::get('/deskripsi/{id}', [LandingController::class, 'show'])->name('deskripsi.show');
 });
 
 Auth::routes();
@@ -45,7 +49,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('peminjaman', PeminjamanController::class);
-    Route::resource('struk', ADStrukController::class);
+    Route::resource('struk-admin', ADStrukController::class);
 });
 
 //officer
@@ -56,15 +60,19 @@ Route::prefix('officer')->middleware(['auth', 'auth.officer'])->group(function (
 //user
 Route::prefix('user')->middleware(['auth', 'auth.user'])->group(function () {
     Route::get('beranda', [BerandaUserController::class, 'index'])->name('user.beranda');
-    Route::resource('categories', CategoriesController::class);
-    Route::get('/deskripsi/{id}', [LandingController::class, 'show'])->name('deskripsi.show');
+    Route::resource('categories', CategoriesUserController::class);
+    Route::get('deskripsi/{id}', [DeskripsiBukuController::class, 'show'])->name('deskripsi.user');
     Route::get('dashboard', [BerandaUserController::class, 'show'])->name('user.dashboard');
     Route::get('peminjaman', [PeminjamanUserController::class, 'index'])->name('peminjaman.user');
     Route::get('peminjaman/create/form/{id}', [PeminjamanUserController::class, 'create'])->name('peminjaman.user.create.form');
     Route::post('peminjaman/create', [PeminjamanUserController::class, 'store'])->name('peminjaman.user.create');
     Route::get('peminjaman/show/{id}', [PeminjamanUserController::class, 'show'])->name('peminjaman.user.show');
-    Route::resource('struk-user', StrukUserController::class);
+    Route::resource('struk', StrukUserController::class);
     Route::resource('koleksi', KoleksiController::class);
+    Route::get('ulasan-form/{id}', [UlasanUserController::class, 'create'])->name('ulasan.form');
+    Route::post('ulasan-store', [UlasanUserController::class, 'store'])->name('ulasan.store');
+    Route::get('ulasan-edit/{id}', [UlasanUserController::class, 'edit'])->name('ulasan.edit');
+    Route::put('ulasan-update/{id}', [UlasanUserController::class, 'update'])->name('ulasan.update');
 });
 
 Route::get('logout', function () {

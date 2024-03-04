@@ -20,11 +20,11 @@
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-center">{{ $item->nm_kategori }}</td>
                             <td class="text-center">
-                                <a href="{{ route('kategori.edit', $item->id) }}" class="btn btn-warning">
+                                <a href="{{ route('kategori.edit', $item->id) }}" class="btn btn-sm btn btn-warning">
                                     <i class="bi bi-pencil-square"></i>
                                     Edit</a>
                                 <a href="{{ route('kategori.destroy', $item->id) }}" data-confirm-delete="true"
-                                    class="btn btn-danger">
+                                    class="btn btn-sm btn btn-danger">
                                     <i class="bi bi-trash"></i>
                                     Delete</a>
                             </td>

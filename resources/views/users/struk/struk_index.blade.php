@@ -20,7 +20,7 @@
                             <td class="text-center">{{ $item->id_peminjaman }}</td>
                             <td class="text-center">{{ $item->jumlah }}</td>
                             <td class="text-center">
-                                <a href="{{ route('struk-user.show', $item->id_struk) }}" class="btn btn-info">
+                                <a href="{{ route('struk.show', $item->id_struk) }}" class="btn btn-sm btn btn-info">
                                     <i class="bi bi-eye"></i>
                                     Detail</a>
                             </td>

@@ -81,7 +81,7 @@ class PeminjamanController extends Controller
             $buku->save();
         }
         toast('Data peminjaman buku berhasil diubah', 'success');
-        return redirect()->route('peminjaman.index')->with(['success' => 'Data peminjaman buku berhasil diubah']);
+        return redirect()->route('peminjaman.index');
     }
 
     /**

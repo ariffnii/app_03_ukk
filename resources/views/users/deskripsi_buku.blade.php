@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <nav class="navbar navbar-expand-lg" id="navbar">
         <div class="container-fluid">
             <a class="navbar-brand text-light" href="#">L-Books</a>
@@ -30,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="{{ url('/') }}">Home</a>
+                        <a class="nav-link text-light" href="{{ route('user.beranda') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="#">About</a>
@@ -42,10 +43,46 @@
                         <a class="nav-link text-light" href="{{ route('categories.index') }}">Categories</a>
                     </li>
                 </ul>
-                <div class="d-flex">
-                    <a href="{{ route('login') }}" type="button" class="btn me-3 btn-outline-light">Login</a>
-                    <a href="{{ route('register') }}" type="button" class="btn me-3 btn-outline-light">Register</a>
-                </div>
+                <li class="nav-item navbar-dropdown">
+                    <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset('sneat/assets/img/icons/user-w.png') }}" alt=""
+                            class="rounded-circle" style="width: 50px; height:50px; margin-bottom:20px;">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <div class="d-flex">
+                                    <div class="flex me-3">
+                                        <img src="{{ asset('sneat/assets/img/icons/user.png') }}" alt=""
+                                            class="rounded-circle" style="width: 50px; height:50px">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <span class="fw-medium d-block">{{ Auth::user()->name }}</span>
+                                        <small class="text-muted">{{ Auth::user()->role }}</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('user.dashboard') }}">
+                                <box-icon type='solid' class="me-2 align-middle" name='dashboard'></box-icon>
+                                <span class="align-middle">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}">
+                                <box-icon name='power-off' class="me-2 align-middle"></box-icon>
+                                <span class="align-middle">Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </div>
         </div>
     </nav>
@@ -132,15 +169,26 @@
                                 </div>
                                 <div class="row" style="margin-top: 30px;">
                                     <div class="col-4">
-                                        <a class="btn btn-info text-light" href="{{ url('/') }}"
+                                        <a class="btn btn-info text-light" href="{{ route('user.beranda') }}"
                                             style="font-family:'Public Sans', sans-serif; font-size: 18px">Back</a>
                                     </div>
                                     <div class="col-4">
-                                        <a class="btn btn-primary" href="{{ route('login') }}"
-                                            style="font-family:'Public Sans', sans-serif; font-size: 18px">Koleksi</a>
+                                        <form
+                                            action="{{ route('koleksi.store', ['id_buku' => $dbuku->id, 'id_user' => Auth::user()->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            <button class="btn btn-primary" type="submit"
+                                                style="font-family:'Public Sans', sans-serif; font-size: 18px">Koleksi</button>
+                                        </form>
+                                        @if (session('warning'))
+                                            <div class="alert alert-warning mt-2">{{ session('warning') }}</div>
+                                        @endif
+                                        @if ($errors->has('id_buku'))
+                                            <div class="alert alert-danger mt-2">{{ $errors->first('id_buku') }}</div>
+                                        @endif
                                     </div>
                                     <div class="col-4">
-                                        <a href="{{ route('login') }}"
+                                        <a href="{{ route('peminjaman.user.create.form', $dbuku->id) }}"
                                             class="btn btn-primary"
                                             style="font-family:'Public Sans', sans-serif; margin-left: -170px; font-size: 18px">Pinjam</a>
                                     </div>

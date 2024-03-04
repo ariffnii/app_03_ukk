@@ -37,7 +37,7 @@ class KategoriController extends Controller
             'nm_kategori' => $request->nm_kategori
         ]);
         toast('Data kategori buku berhasil ditambahkan', 'success');
-        return redirect()->route('kategori.index')->with(['success' => 'Data kategori buku berhasil ditambahkan']);
+        return redirect()->route('kategori.index');
     }
 
     /**
@@ -68,7 +68,7 @@ class KategoriController extends Controller
         Kategori::where('id', $id)->update([
             'nm_kategori' => $request->nm_kategori
         ]);
-        return redirect()->route('kategori.index')->with(['success' => 'Data kategori buku berhasil diubah']);
+        return redirect()->route('kategori.index');
     }
 
     /**

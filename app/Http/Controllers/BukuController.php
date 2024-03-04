@@ -60,7 +60,7 @@ class BukuController extends Controller
         ]);
         $dataBuku->kategori()->attach($request->input('kategori'));
         $dataBuku->save();
-        alert('Data buku berhasil ditambahkan', 'success');
+        toast('Data buku berhasil ditambahkan', 'success');
         return redirect()->route('buku.index');
     }
 
@@ -132,6 +132,7 @@ class BukuController extends Controller
             ]);
             $buku->kategori()->sync($request->input('kategori'));
         }
+        toast('Data buku berhasil diubah', 'success');
         return redirect()->route('buku.index');
     }
 

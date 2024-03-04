@@ -48,7 +48,7 @@ class KoleksiController extends Controller
             'id_buku' => $request->id_buku,
             'id_user' => $request->id_user
         ]);
-        toast('Data koleksi buku berhasil ditambahkan', 'success');
+        toast('Berhasil menambahkan buku ke koleksi', 'success');
         return redirect()->route('deskripsi.show', $request->id_buku);
     }
 

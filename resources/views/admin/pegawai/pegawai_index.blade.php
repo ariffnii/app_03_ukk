@@ -24,12 +24,12 @@
                                 <form action="{{ route('pegawai.destroy', $item->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <a href="{{ route('pegawai.edit', $item->id) }}" class="btn btn-warning">
+                                    <a href="{{ route('pegawai.edit', $item->id) }}" class="btn btn-sm btn btn-warning">
                                         <i class="bi bi-pencil-square"></i>
                                         Edit</a>
                                     <button type="submit"
                                         onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"
-                                        class="btn btn-danger">
+                                        class="btn btn-sm btn btn-danger">
                                         <i class="bi bi-trash"></i>
                                         Delete</button>
                                 </form>

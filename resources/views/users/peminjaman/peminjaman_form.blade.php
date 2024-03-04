@@ -17,6 +17,12 @@
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="judul">Stock Buku</label>
+                        <div class="col-sm-10">
+                            <label class="col-sm-2 col-form-label" for="judul">{{ $buku->stock }}</label>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="penulis">Tanggal Pengajuan Peminjaman</label>
                         <div class="col-sm-10">
                             <input type="date" name="tgl_pinjam" class="form-control" id="penulis" placeholder="">

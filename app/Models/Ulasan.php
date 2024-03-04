@@ -10,19 +10,19 @@ class Ulasan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_buku',
-        'id_user',
-        'ulasan',
+        'buku_id',
+        'user_id',
+        'komentar',
         'rating',
     ];
 
     public function buku()
     {
-        return $this->belongsTo(Buku::class, 'id_buku', 'id');
+        return $this->belongsTo(Buku::class, 'buku_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user', 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
