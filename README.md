@@ -1,8 +1,16 @@
 ## Install 
 git clone https://github.com/ariffnii/app_03_ukk.git
+
+## Masuk Ke File
 cd app_03_ukk
+
+## Install Composer
 composer install
+
+## Install NPM
 npm install
+
+## Copy File di Terminal
 copy .env.example .env
 
 ## Di .env
