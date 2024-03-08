@@ -1,8 +1,13 @@
 @extends('layouts.app')
 @section('content')
     <div class="card">
+        <div class="card-header">Data User</div>
         <div class="card-body">
-            <a href="{{ route('user.create') }}" class="btn btn-primary">Tambah</a>
+            <div class="d-flex justify-content-start mb-3 gap-3">
+                <a href="{{ route('user.create') }}" class="btn btn-sm btn btn-primary"><i class="bi bi-plus"></i>Tambah</a>
+                <a href="{{ route('admin.export.user') }}" class="btn btn-sm btn btn-success"><i
+                        class="bi bi-file-earmark-spreadsheet"></i>Export</a>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -21,18 +26,13 @@
                             <td class="text-center">{{ $item->email }}</td>
                             <td class="text-center">{{ $item->telepon }}</td>
                             <td class="text-center">
-                                <form action="{{ route('user.destroy', $item->id) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <a href="{{ route('user.edit', $item->id) }}" class="btn btn-sm btn btn-warning">
-                                        <i class="bi bi-pencil-square"></i>
-                                        Edit</a>
-                                    <button type="submit"
-                                        onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"
-                                        class="btn btn-sm btn btn-danger">
-                                        <i class="bi bi-trash"></i>
-                                        Delete</button>
-                                </form>
+                                <a href="{{ route('user.edit', $item->id) }}" class="btn btn-sm btn btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Edit</a>
+                                <a href="{{ route('user.destroy', $item->id) }}" data-confirm-delete="true"
+                                    class="btn btn-sm btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                    Delete</a>
                             </td>
                         @empty
                             <td colspan="6">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
 
 class UlasanController extends Controller
@@ -11,7 +12,9 @@ class UlasanController extends Controller
      */
     public function index()
     {
-        //
+        $ulasan = Ulasan::latest()->paginate(15);
+        confirmDelete('Ulasan', 'Anda Yakin Ingin Menghapus Data Ini?');
+        return view('admin.ulasan.ulasan_index', compact('ulasan'));
     }
 
     /**
@@ -35,7 +38,8 @@ class UlasanController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ulasan = Ulasan::findorFail($id);
+        return view('admin.ulasan.ulasan_show', compact('ulasan'));
     }
 
     /**
@@ -59,6 +63,9 @@ class UlasanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $ulasan = Ulasan::findorFail($id);
+        $ulasan->delete();
+        toast('Ulasan buku berhasil dihapus', 'success');
+        return redirect()->route('ulasan.index');
     }
 }

@@ -31,10 +31,10 @@ class PegawaiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string|max:30|unique:users',
             'email' => 'required|email|unique:users',
-            'telepon' => 'required|numeric',
-            'alamat' => 'required',
+            'telepon' => 'required|string|min:10|max:15',
+            'alamat' => 'required|string|max:100',
             'password' => 'required',
             'role' => 'required',
         ]);
@@ -73,10 +73,10 @@ class PegawaiController extends Controller
     public function update(Request $request, String $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string|max:30|unique:users',
             'email' => 'required|email|unique:users,email,' . $id,
-            'telepon' => 'required|numeric',
-            'alamat' => 'required',
+            'telepon' => 'required|string|min:10|max:15',
+            'alamat' => 'required|string|max:100',
             'password' => 'required',
             'role' => 'required',
         ]);
@@ -99,6 +99,7 @@ class PegawaiController extends Controller
     {
         $dataPegawai = User::findOrFail($id);
         $dataPegawai->delete();
+        toast('Data pegawai berhasil dihapus', 'success');
         return redirect()->route('pegawai.index');
     }
 }

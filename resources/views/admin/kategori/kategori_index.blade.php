@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
     <div class="card">
         <div class="card-header">Data Kategori</div>
         <div class="card-body">

@@ -30,8 +30,10 @@ class PeminjamanUserController extends Controller
     {
         $user = User::findorFail(Auth::id());
         $buku = Buku::findorFail($id);
-        return view('users.peminjaman.peminjaman_form', compact('user', 'buku'));
+        $tgl_pinjam = Carbon::now()->toDateString();
+        return view('users.peminjaman.peminjaman_form', compact('user', 'buku', 'tgl_pinjam'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -45,7 +47,36 @@ class PeminjamanUserController extends Controller
             'status' => 'required',
             'jumlah' => 'required|numeric'
         ]);
-        $tgl_kembali = Carbon::parse($request->tgl_pinjam)->addDays(7)->toDateTimeString();
+
+        // Hitung jumlah total buku dengan id_buku yang sama yang sudah dipinjam oleh user dengan status 'dipinjam'
+        $totalPeminjamanBuku = Peminjaman::where('id_user', $request->id_user)
+            ->where('id_buku', $request->id_buku)
+            ->where('status', 'dipinjam')
+            ->sum('jumlah');
+
+        // Tentukan batas maksimum peminjaman untuk satu buku
+        $batasPeminjamanBuku = 2;
+
+        // Jika jumlah total peminjaman buku melebihi batas, kembalikan pesan kesalahan
+        if ($totalPeminjamanBuku + $request->jumlah > $batasPeminjamanBuku) {
+            return redirect()->back()->withInput()->withErrors(['jumlah' => 'Anda hanya dapat meminjam maksimal ' . $batasPeminjamanBuku . ' untuk 1 judul buku sama.']);
+        }
+
+        // Hitung jumlah total buku yang sudah dipinjam oleh user dengan status 'dipinjam'
+        $totalPeminjaman = Peminjaman::where('id_user', $request->id_user)
+            ->where('status', 'dipinjam')
+            ->sum('jumlah');
+
+        // Tentukan batas maksimum peminjaman secara keseluruhan
+        $batasPeminjaman = 6;
+
+        // Jika jumlah total peminjaman melebihi batas, kembalikan pesan kesalahan
+        if ($totalPeminjaman + $request->jumlah > $batasPeminjaman) {
+            return redirect()->back()->withInput()->withErrors(['jumlah' => 'Anda hanya dapat meminjam maksimal ' . $batasPeminjaman . ' total buku.']);
+        }
+
+        $tgl_kembali = Carbon::parse($request->tgl_pinjam)->addDays(3)->toDateTimeString();
+
         $peminjaman = Peminjaman::create([
             'id_buku' => $request->id_buku,
             'id_user' => $request->id_user,

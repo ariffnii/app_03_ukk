@@ -19,11 +19,11 @@
                             <td class="text-center">{{ $item->buku->judul }}</td>
                             <td class="text-center">
                                 <a href="{{ route('peminjaman.user.create.form', $item->id_buku) }}"
-                                    class="btn btn-primary">
+                                    class="btn btn-sm btn btn-primary">
                                     <i class="bi bi-plus"></i>
                                     Pinjam</a>
                                 <a href="{{ route('koleksi.destroy', $item->id) }}" data-confirm-delete="true"
-                                    class="btn btn-danger">
+                                    class="btn btn-sm btn btn-danger">
                                     <i class="bi bi-trash"></i>
                                     Delete</a>
                             </td>
@@ -36,6 +36,7 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-end mt-3">
+                {{ $koleksi->links() }}
             </div>
         </div>
     </div>

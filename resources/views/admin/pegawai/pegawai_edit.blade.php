@@ -48,8 +48,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="tahun">Alamat</label>
                         <div class="col-sm-10">
-                            <input type="text" name="alamat" class="form-control" id="tahun" placeholder=""
-                                value="{{ old('alamat', $dataPegawai->alamat) }}">
+                            <textarea name="alamat" id="" cols="30" rows="5" class="form-control" placeholder="">{{ old('alamat', $dataPegawai->alamat) }}</textarea>
                         </div>
                         @error('alamat')
                             <div class="alert alert-danger mt-2">
@@ -86,7 +85,7 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('pegawai.index') }}" class="btn btn-secondary">Back</a>
+                            <a onclick="window.history.back()" class="btn btn-secondary text-white">Back</a>
                             <button type="submit" class="btn btn-primary">Send</button>
                         </div>
                     </div>

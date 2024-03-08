@@ -18,7 +18,7 @@ class StrukUserController extends Controller
         $id_user = Auth::user()->id;
         $struk = Struk::join('peminjamen', 'peminjamen.id', '=', 'struks.id_peminjaman')
         ->where('peminjamen.id_user', $id_user)
-        ->orderBy('peminjamen.id', 'desc')->get();
+        ->orderBy('peminjamen.id', 'desc')->paginate(15);
         return view('users.struk.struk_index', compact('struk'));
     }
 

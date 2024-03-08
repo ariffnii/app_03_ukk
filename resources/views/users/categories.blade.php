@@ -36,9 +36,6 @@
                         <a class="nav-link text-light" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="">Books</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link text-light" href="{{ route('categories.index') }}">Categories</a>
                     </li>
                 </ul>
@@ -66,9 +63,9 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('user.dashboard') }}">
                                 <box-icon type='solid' class="me-2 align-middle" name='dashboard'></box-icon>
-                                <span class="align-middle">Dashboard</span>
+                                <span class="align-middle">Peminjaman</span>
                             </a>
                         </li>
                         <li>
@@ -76,7 +73,7 @@
                         </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}">
-                                <box-icon name='power-off' class="me-2 align-middle"></box-icon>
+                                <box-icon name='log-out' class="me-2 align-middle"></box-icon>
                                 <span class="align-middle">Log Out</span>
                             </a>
                         </li>
@@ -97,7 +94,7 @@
                     @foreach ($category->kategoriBuku as $kategoriBuku)
                         <div class="col-3">
                             <div class="cover1">
-                                <a href="{{ route('deskripsi.show', $kategoriBuku->buku->id) }}">
+                                <a href="{{ route('user.deskripsi', $kategoriBuku->buku->id) }}">
                                     <img src="{{ asset('storage/' . $kategoriBuku->buku->cover) }}" alt="">
                                 </a>
                                 <p id="judul" class="text-light">{{ $kategoriBuku->buku->judul }}</p>

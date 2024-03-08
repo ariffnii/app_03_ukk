@@ -3,7 +3,7 @@
     <div class="col-xxl">
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0">Form Ulasan</h5>
+                <h5 class="mb-0">Ulasan</h5>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('ulasan.store', $buku->id) }}">
@@ -15,6 +15,12 @@
                     @endif
                     <input type="text" name="user_id" class="form-control" value="{{ $user->id }}" hidden>
                     <input type="text" name="buku_id" class="form-control" value="{{ $buku->id }}" hidden>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="judul">Judul Buku</label>
+                        <div class="col-sm-10">
+                            <label class="col-sm-2 col-form-label" for="judul">{{ $buku->judul }}</label>
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="judul">Ulasan</label>
                         <div class="col-sm-10">
@@ -53,7 +59,7 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('peminjaman.user') }}" class="btn btn-secondary">Back</a>
+                            <a onclick="window.history.back()" class="btn btn-secondary text-white">Back</a>
                             <button type="submit" class="btn btn-primary">Send</button>
                         </div>
                     </div>

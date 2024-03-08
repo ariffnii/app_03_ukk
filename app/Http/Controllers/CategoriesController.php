@@ -12,7 +12,13 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Kategori::with(['KategoriBuku.buku'])->get();
+        $categories = Kategori::with(['KategoriBuku.buku'])->get()
+            ->filter(function ($category) {
+                $category->kategoriBuku = $category->kategoriBuku->filter(function ($kategoriBuku) {
+                    return $kategoriBuku->buku->status === 'aktif';
+                });
+                return $category->kategoriBuku->isNotEmpty();
+            });;
         return view('pages.categories', compact('categories'));
     }
 

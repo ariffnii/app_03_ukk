@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class StrukController extends Controller
+class OfcPeminjamController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $dataUser = User::where('role', 'user')->latest()->paginate(15);
+        return view('officer.user.user_index', compact('dataUser'));
     }
 
     /**
@@ -35,7 +37,8 @@ class StrukController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::findorFail($id);
+        return view('officer.user.user_show', compact('user'));
     }
 
     /**

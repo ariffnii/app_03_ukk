@@ -22,7 +22,8 @@
                                 <a href="{{ route('struk-admin.show', $item->id_struk) }}" class="btn btn-sm btn btn-info">
                                     <i class="bi bi-eye"></i>
                                     Detail</a>
-                                <a href="{{ route('struk-admin.destroy', $item->id_struk) }}" data-confirm-delete="true" class="btn btn-sm btn btn-danger">
+                                <a href="{{ route('struk-admin.destroy', $item->id_struk) }}" data-confirm-delete="true"
+                                    class="btn btn-sm btn btn-danger">
                                     <i class="bi bi-trash"></i>
                                     Delete</a>
                             </td>
@@ -35,7 +36,7 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-end mt-3">
-
+                {{ $struk->links() }}
             </div>
         </div>
     </div>

@@ -36,7 +36,7 @@ class UlasanUserController extends Controller
         $this->validate($request, [
             'buku_id' => 'required',
             'user_id' => 'required',
-            'komentar' => 'nullable',
+            'komentar' => 'nullable|string|max:30',
             'rating' => 'required',
         ]);
         $existingReview = Ulasan::where('buku_id', $request->buku_id)
@@ -69,7 +69,10 @@ class UlasanUserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ulasan = Ulasan::findorFail($id);
+        $buku = Buku::findorFail($ulasan->buku_id);
+        $user = User::findorFail($ulasan->user_id);
+        return view('users.ulasan.ulasan_edit', compact('ulasan', 'buku', 'user'));
     }
 
     /**
@@ -77,7 +80,17 @@ class UlasanUserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'komentar' => 'nullable|string|max:30',
+            'rating' => 'required',
+        ]);
+        $ulasan = Ulasan::findorFail($id);
+        $ulasan->update([
+            'komentar' => $request->komentar,
+            'rating' => $request->rating
+        ]);
+        toast('Ulasan berhasil diubah', 'success');
+        return redirect()->route('peminjaman.user');
     }
 
     /**

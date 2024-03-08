@@ -35,9 +35,6 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="#">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="">Books</a>
-                    </li>
                     @if (Route::has('login'))
                         @auth
                             <li class="nav-item">
@@ -79,7 +76,7 @@
                                 <li>
                                     <a class="dropdown-item" href="{{ route('user.dashboard') }}">
                                         <box-icon type='solid' class="me-2 align-middle" name='dashboard'></box-icon>
-                                        <span class="align-middle">Dashboard</span>
+                                        <span class="align-middle">Peminjaman</span>
                                     </a>
                                 </li>
                                 <li>
@@ -87,7 +84,7 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}">
-                                        <box-icon name='power-off' class="me-2 align-middle"></box-icon>
+                                        <box-icon name='log-out' class="me-2 align-middle"></box-icon>
                                         <span class="align-middle">Log Out</span>
                                     </a>
                                 </li>
@@ -138,8 +135,14 @@
                 @foreach ($dbuku->take(8) as $item)
                     <div class="col-3">
                         <div class="cover1">
-                            <a href="{{ route('deskripsi.show', $item->id) }}">
-                                <img src="{{ asset('storage/' . $item->cover) }}" alt="">
+                            @if (Route::has('login'))
+                                @auth
+                                    <a href="{{ route('user.deskripsi', $item->id) }}">
+                                    @else
+                                        <a href="{{ route('deskripsi.show', $item->id) }}">
+                                        @endauth
+                            @endif
+                            <img src="{{ asset('storage/' . $item->cover) }}" alt="">
                             </a>
                             <p id="judul">{{ $item->judul }}</p>
                         </div>

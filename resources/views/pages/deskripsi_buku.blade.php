@@ -36,10 +36,7 @@
                         <a class="nav-link text-light" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="">Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="{{ route('categories.index') }}">Categories</a>
+                        <a class="nav-link text-light" href="{{ route('kategori.user') }}">Categories</a>
                     </li>
                 </ul>
                 <div class="d-flex">
@@ -132,7 +129,40 @@
                                 </div>
                                 <div class="row" style="margin-top: 30px;">
                                     <div class="col-4">
-                                        <a class="btn btn-info text-light" href="{{ url('/') }}"
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#ulasanModal"
+                                            style="font-family:'Public Sans', sans-serif; font-size: 18px">
+                                            Lihat Ulasan
+                                        </button>
+                                        <div class="modal fade" id="ulasanModal" tabindex="-1"
+                                            aria-labelledby="ulasanModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="ulasanModalLabel">Ulasan Buku</h5>
+                                                        <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <!-- Daftar ulasan buku -->
+                                                        <ul class="list-group">
+                                                            @foreach ($buku->ulasan as $ulasan)
+                                                                <li class="list-group-item">
+                                                                    <strong>{{ $ulasan->user->name }}</strong>:
+                                                                    {{ $ulasan->komentar }} (Rating:
+                                                                    {{ $ulasan->rating }})
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Tutup</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a class="btn btn-info text-light mt-3" onclick="window.history.back()"
                                             style="font-family:'Public Sans', sans-serif; font-size: 18px">Back</a>
                                     </div>
                                     <div class="col-4">
@@ -140,8 +170,7 @@
                                             style="font-family:'Public Sans', sans-serif; font-size: 18px">Koleksi</a>
                                     </div>
                                     <div class="col-4">
-                                        <a href="{{ route('login') }}"
-                                            class="btn btn-primary"
+                                        <a href="{{ route('login') }}" class="btn btn-primary"
                                             style="font-family:'Public Sans', sans-serif; margin-left: -170px; font-size: 18px">Pinjam</a>
                                     </div>
                                 </div>

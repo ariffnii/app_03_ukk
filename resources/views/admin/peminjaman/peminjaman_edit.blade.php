@@ -39,7 +39,7 @@
                         <label class="col-sm-2 col-form-label" for="penulis">Tanggal Pengembalian</label>
                         <div class="col-sm-10">
                             <input type="date" name="tgl_kembali" class="form-control" id="penulis" placeholder=""
-                                value="{{ $peminjaman->tgl_kembali }}">
+                                value="{{ $peminjaman->tgl_kembali }}" readonly>
                         </div>
                         @error('tgl_kembali')
                             <div class="alert alert-danger mt-2">
@@ -64,8 +64,12 @@
                         <div class="col-sm-10">
                             <select id="kategori" name="status" class="form-select form-control">
                                 <option>Status</option>
-                                <option value="dipinjam" {{ $peminjaman->status == 'dipinjam' ? 'selected' : '' }}>Dipinjam</option>
-                                <option value="dikembalikan" {{ $peminjaman->status == 'dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
+                                <option value="dipinjam" {{ $peminjaman->status == 'dipinjam' ? 'selected' : '' }}>Dipinjam
+                                </option>
+                                <option value="diambil" {{ $peminjaman->status == 'diambil' ? 'selected' : '' }}>
+                                    Diambil</option>
+                                <option value="dikembalikan" {{ $peminjaman->status == 'dikembalikan' ? 'selected' : '' }}>
+                                    Dikembalikan</option>
                             </select>
                         </div>
                         @error('status')
@@ -76,7 +80,7 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('peminjaman.index') }}" class="btn btn-secondary">Back</a>
+                            <a onclick="window.history.back()" class="btn btn-secondary text-white">Back</a>
                             <button type="submit" class="btn btn-primary">Send</button>
                         </div>
                     </div>

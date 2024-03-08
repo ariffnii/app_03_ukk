@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use App\Exports\PeminjamanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PeminjamanController extends Controller
 {
@@ -13,7 +15,7 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::latest()->paginate(10);
+        $peminjaman = Peminjaman::latest()->paginate(15);
         confirmDelete('Peminjaman', 'Anda Yakin Ingin Menghapus Data Ini?');
         return view('admin.peminjaman.peminjaman_index', compact('peminjaman'));
     }

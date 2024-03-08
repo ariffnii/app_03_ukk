@@ -25,7 +25,8 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="penulis">Tanggal Pengajuan Peminjaman</label>
                         <div class="col-sm-10">
-                            <input type="date" name="tgl_pinjam" class="form-control" id="penulis" placeholder="">
+                            <input type="text" name="tgl_pinjam" value="{{ $tgl_pinjam }}"
+                                class="form-control" id="" placeholder="" readonly>
                         </div>
                         @error('tgl_pinjam')
                             <div class="alert alert-danger mt-2">
@@ -60,7 +61,7 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('user.beranda') }}" class="btn btn-secondary">Back</a>
+                            <a onclick="window.history.back()" class="btn btn-secondary text-white">Back</a>
                             <button type="submit" class="btn btn-primary">Send</button>
                         </div>
                     </div>

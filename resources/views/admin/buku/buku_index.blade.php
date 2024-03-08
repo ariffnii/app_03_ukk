@@ -5,6 +5,7 @@
         <div class="card-header">Data Buku</div>
         <div class="card-body">
             <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah</a>
+            <a href="{{ route('admin.export.buku') }}" class="btn btn-success">Export</a>
             <table class="table mt-3">
                 <thead>
                     <tr>

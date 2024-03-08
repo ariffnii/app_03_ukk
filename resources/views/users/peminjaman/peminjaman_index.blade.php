@@ -23,12 +23,30 @@
                             <td class="text-center">{{ $item->tgl_pinjam }}</td>
                             <td class="text-center">{{ $item->tgl_kembali }}</td>
                             <td class="text-center">{{ $item->jumlah }}</td>
-                            <td class="text-center">{{ $item->status }}</td>
+                            <td class="text-center">
+                                @if ($item->status == 'dipinjam')
+                                    <span class="badge bg-label-warning">dipinjam</span>
+                                @endif
+                                @if ($item->status == 'dikembalikan')
+                                    <span class="badge bg-label-success">dikembalikan</span>
+                                @endif
+                                @if ($item->status == 'diambil')
+                                    <span class="badge bg-label-info">diambil</span>
+                                @endif
+                            </td>
                             <td class="text-center">
                                 @if ($item->status == 'dikembalikan')
-                                    <a href="{{ route('ulasan.form', $item->id_buku) }}" class="btn btn-sm btn btn-success">
-                                        <i class="bi bi-pencil"></i>
-                                        Ulas Buku</a>
+                                    @if ($item->buku->ulasan()->where('user_id', Auth::id())->exists())
+                                        <a href="{{ route('ulasan.edit', $item->buku->id) }}"
+                                            class="btn btn-sm btn btn-success">
+                                            <i class="bi bi-pencil"></i> Edit Ulasan
+                                        </a>
+                                    @else
+                                        <a href="{{ route('ulasan.form', $item->id_buku) }}"
+                                            class="btn btn-sm btn btn-success">
+                                            <i class="bi bi-pencil"></i> Ulas Buku
+                                        </a>
+                                    @endif
                                 @endif
                                 <a href="{{ route('peminjaman.user.show', $item->id) }}" class="btn btn-sm btn btn-info">
                                     <i class="bi bi-eye"></i>
@@ -43,6 +61,7 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-end mt-3">
+                {{ $upinjam->links() }}
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('kategori.index') }}" class="btn btn-secondary">Back</a>
+                            <a onclick="window.history.back()" class="btn btn-secondary text-white">Back</a>
                             <button type="submit" class="btn btn-primary">Send</button>
                         </div>
                     </div>

@@ -105,7 +105,7 @@
                         </form>
                         <div class="row">
                             <div class="col text-center">
-                                <a href="/" class="btn btn-secondary">Back</a>
+                                <a onclick="window.history.back()" type="button">Back</a>
                             </div>
                         </div>
                     </div>

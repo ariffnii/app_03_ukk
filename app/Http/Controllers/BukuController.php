@@ -36,12 +36,12 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul' => 'required',
-            'penulis' => 'required',
-            'penerbit' => 'required',
-            'tahun_terbit' => 'required',
-            'cover' => 'required|mimes:png,jpg,jpeg',
-            'deskripsi' => 'required',
+            'judul' => 'required|string|max:30',
+            'penulis' => 'required|string|max:30',
+            'penerbit' => 'required|string|max:30',
+            'tahun_terbit' => 'required|string|max:15',
+            'cover' => 'required|mimes:png,jpg,jpeg|max:5048',
+            'deskripsi' => 'required|string|max:50',
             'kategori' => 'required|array',
             'stock' => 'required|numeric',
             'status' => 'required|in:aktif,tdk_aktif',
@@ -90,12 +90,12 @@ class BukuController extends Controller
     public function update(Request $request, string $id)
     {
         $this->validate($request, [
-            'judul' => 'required',
-            'penulis' => 'required',
-            'penerbit' => 'required',
-            'tahun_terbit' => 'required',
-            'cover' => 'image|mimes:png,jpg,jpeg',
-            'deskripsi' => 'required',
+            'judul' => 'required|string|max:30',
+            'penulis' => 'required|string|max:30',
+            'penerbit' => 'required|string|max:30',
+            'tahun_terbit' => 'required|string|max:15',
+            'cover' => 'required|mimes:png,jpg,jpeg|max:5048',
+            'deskripsi' => 'required|string|max:50',
             'kategori' => 'required|array',
             'stock' => 'required|numeric',
             'status' => 'required|in:aktif,tdk_aktif',

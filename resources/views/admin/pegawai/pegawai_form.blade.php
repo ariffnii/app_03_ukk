@@ -44,7 +44,9 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="tahun">Alamat</label>
                         <div class="col-sm-10">
-                            <input type="text" name="alamat" class="form-control" id="tahun" placeholder="">
+                            <textarea name="alamat"cols="30" rows="5" class="form-control @error('alamat') is-invalid @enderror"
+                                id="alamat" name="alamat" placeholder="Enter your address" value="{{ old('alamat') }}" required
+                                autocomplete="address"></textarea>
                         </div>
                         @error('alamat')
                             <div class="alert alert-danger mt-2">
@@ -80,7 +82,7 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('pegawai.index') }}" class="btn btn-secondary">Back</a>
+                            <a onclick="window.history.back()" class="btn btn-secondary text-white">Back</a>
                             <button type="submit" class="btn btn-primary">Send</button>
                         </div>
                     </div>

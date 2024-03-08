@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                     @forelse ($struk as $item)
-                    <tr>
+                        <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-center">{{ $item->id_peminjaman }}</td>
                             <td class="text-center">{{ $item->jumlah }}</td>
@@ -33,6 +33,7 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-end mt-3">
+                {{ $struk->links() }}
             </div>
         </div>
     </div>

@@ -18,7 +18,6 @@
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
-                @include('layouts.navbar')
                 <!-- / Navbar -->
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
@@ -43,5 +42,14 @@
     <!-- / Layout wrapper -->
     @include('partials.script')
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var inputTanggal = document.getElementById('tgl_pinjam');
+        var tanggalSekarang = new Date();
+        var tanggalFormatted = tanggalSekarang.toISOString().split('T')[0];
+        inputTanggal.value = tanggalFormatted;
+    });
+</script>
+
 
 </html>

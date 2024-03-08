@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
             $table->integer('jumlah');
-            $table->enum('status', ['dipinjam', 'dikembalikan']);
+            $table->enum('status', ['dipinjam', 'diambil', 'dikembalikan']);
             $table->timestamps();
         });
     }

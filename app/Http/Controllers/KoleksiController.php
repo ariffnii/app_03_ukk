@@ -13,7 +13,7 @@ class KoleksiController extends Controller
      */
     public function index()
     {
-        $koleksi = Koleksi::where('id_user', Auth::user()->id)->get();
+        $koleksi = Koleksi::where('id_user', Auth::user()->id)->paginate(15);
         confirmDelete('Koleksi', 'Anda Yakin Ingin Menghapus Data Ini?');
         return view('users.koleksi.koleksi_index', compact('koleksi'));
     }

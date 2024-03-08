@@ -36,10 +36,7 @@
                         <a class="nav-link text-light" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="">Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="{{ route('categories.index') }}">Categories</a>
+                        <a class="nav-link text-light" href="{{ url('/categories') }}">Categories</a>
                     </li>
                 </ul>
                 <div class="d-flex">

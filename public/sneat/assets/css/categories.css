@@ -87,9 +87,11 @@ form .input-group {
     font-family: 'Kameron', sans-serif;
     padding-top: 20px;
 }
-.card{
+
+.card {
     width: 264px;
 }
+
 .card-body {
     text-align: center;
     background-color: #ffffff;
@@ -97,14 +99,17 @@ form .input-group {
     height: 136px;
     border-radius: 0 0 10px 10px;
 }
-.card-title{
+
+.card-title {
     font-size: 20px;
     font-family: 'Lato', sans-serif;
 }
-.card-text{
+
+.card-text {
     font-size: 16px;
     font-family: 'Lato', sans-serif;
 }
+
 .card-image {
     text-align: center;
     padding-top: 50px;
@@ -113,9 +118,11 @@ form .input-group {
     height: 210px;
     border-radius: 10px 10px 0 0;
 }
-#container5{
+
+#container5 {
     height: 634px;
 }
-.location{
+
+.location {
     font-family: 'Kameron', sans-serif;
 }

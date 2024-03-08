@@ -60,14 +60,14 @@
                                     <label for="username" class="form-label">Username</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="username" name="name"
-                                        placeholder="Enter your username" autofocus value="{{ old('username') }}" required
-                                        autocomplete="name" autofocus />
-                                        @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        id="username" name="name" placeholder="Enter your username" autofocus
+                                        value="{{ old('username') }}" required autocomplete="name" autofocus />
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -77,13 +77,14 @@
                                     <label for="email" class="form-label">Email</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                                        placeholder="Enter your email" value="{{ old('email') }}" required autocomplete="email" />
-                                        @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        id="email" name="email" placeholder="Enter your email"
+                                        value="{{ old('email') }}" required autocomplete="email" />
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -93,14 +94,14 @@
                                     <label for="telepon" class="form-label">Telephone</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="number" class="form-control @error('telepon') is-invalid @enderror" id="telepon" name="telepon"
-                                        placeholder="Enter your telephone number" value="{{ old('telepon') }}" required
-                                        autocomplete="telepon" />
-                                        @error('telepon')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    <input type="number" class="form-control @error('telepon') is-invalid @enderror"
+                                        id="telepon" name="telepon" placeholder="Enter your telephone number"
+                                        value="{{ old('telepon') }}" required autocomplete="telepon" />
+                                    @error('telepon')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -110,14 +111,14 @@
                                     <label for="alamat" class="form-label">Address</label>
                                 </div>
                                 <div class="col-9">
-                                    <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat"
-                                        placeholder="Enter your address" value="{{ old('alamat') }}" required
-                                        autocomplete="address" />
-                                        @error('alamat')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    <textarea name="alamat"cols="30" rows="5" class="form-control @error('alamat') is-invalid @enderror"
+                                        id="alamat" name="alamat" placeholder="Enter your address" value="{{ old('alamat') }}" required
+                                        autocomplete="address"></textarea>
+                                    @error('alamat')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -128,17 +129,18 @@
                                 </div>
                                 <div class="col-9">
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                                            placeholder="********" aria-describedby="password" required
-                                            autocomplete="new-password" />
+                                        <input type="password" id="password"
+                                            class="form-control @error('password') is-invalid @enderror"
+                                            name="password" placeholder="********" aria-describedby="password"
+                                            required autocomplete="new-password" />
                                         <span class="input-group-text cursor-pointer">
                                             <i class="bx bx-hide"></i>
+                                        </span>
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
                                             </span>
-                                            @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +170,7 @@
                         </p>
                         <div class="row">
                             <div class="col text-center">
-                                <a href="/" class="btn btn-secondary">Back</a>
+                                <a onclick="window.history.back()" type="button">Back</a>
                             </div>
                         </div>
                     </form>

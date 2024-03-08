@@ -13,6 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $dataUser = User::where('role', 'user')->latest()->paginate(15);
+        confirmDelete('Peminjam', 'Anda Yakin Ingin Menghapus Data Ini?');
         return view('admin.user.user_index', compact('dataUser'));
     }
 
@@ -30,9 +31,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string|max:30|unique:users|max:30',
             'email' => 'required|email|unique:users',
-            'telepon' => 'required|numeric',
+            'telepon' => 'required|string|min:10|max:15',
             'alamat' => 'required',
             'password' => 'required',
             'role' => 'required',
@@ -71,10 +72,10 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string|max:30|unique:users|max:30',
             'email' => 'required|email|unique:users,email,' . $id,
-            'telepon' => 'required|numeric',
-            'alamat' => 'required',
+            'telepon' => 'required|string|min:10|max:15',
+            'alamat' => 'required|string|max:100',
             'password' => 'required',
             'role' => 'required',
         ]);
@@ -96,6 +97,7 @@ class UserController extends Controller
     {
         $dataUser = User::findOrFail($id);
         $dataUser->delete();
+        toast('Data Peminjam berhasil dihapus', 'success');
         return redirect()->route('user.index')->with(['success' => 'Data Peminjam berhasil dihapus']);
     }
 }

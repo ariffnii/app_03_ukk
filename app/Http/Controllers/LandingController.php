@@ -40,8 +40,8 @@ class LandingController extends Controller
         $dbuku = Buku::with('ulasan')->findorFail($id);
         // menghitung rata rata rating buku
         $dbuku->rating = $dbuku->ulasan->avg('rating');
-
-        return view('pages.deskripsiBuku', compact('dbuku'));
+        $buku = Buku::findorFail($id);
+        return view('pages.deskripsi_buku', compact('dbuku', 'buku'));
     }
 
     /**
