@@ -27,14 +27,14 @@ php artisan serve
 ## Di Terminal yang berbeda
 npm run dev
 
-##Admin
+## Admin
 email : admin@gmail.com
 password : password
 
-##Officer
+## Officer
 email : petugas@gmail.com
 password : password
 
-##User
+## User
 email : user@gmail.com
 password : password
