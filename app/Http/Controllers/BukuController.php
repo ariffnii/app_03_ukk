@@ -94,7 +94,7 @@ class BukuController extends Controller
             'penulis' => 'required|string|max:30',
             'penerbit' => 'required|string|max:30',
             'tahun_terbit' => 'required|string|max:15',
-            'cover' => 'required|mimes:png,jpg,jpeg|max:5048',
+            'cover' => 'mimes:png,jpg,jpeg|max:5048',
             'deskripsi' => 'required|string|max:50',
             'kategori' => 'required|array',
             'stock' => 'required|numeric',

@@ -11,7 +11,6 @@
                     <div class="col-sm-10">
                         <label class="col-sm-2 col-form-label" for="judul">{{ $user->name }}</label>
                     </div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque reprehenderit soluta aspernatur aliquid magnam autem?
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="penulis">Email</label>

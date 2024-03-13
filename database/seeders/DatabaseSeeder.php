@@ -43,5 +43,13 @@ class DatabaseSeeder extends Seeder
             'telepon' => '081234567890',
             'alamat' => 'Jl. admin',
         ]);
+        User::create([
+            'name' => 'Petugas',
+            'email' => 'petugas@gmail.com',
+            'password' => bcrypt('password'),
+            'role' => 'petugas',
+            'telepon' => '081234567890',
+            'alamat' => 'Jl. petugas',
+        ]);
     }
 }
