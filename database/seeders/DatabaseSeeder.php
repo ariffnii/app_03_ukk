@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Petugas',
             'email' => 'petugas@gmail.com',
             'password' => bcrypt('password'),
-            'role' => 'petugas',
+            'role' => 'officer',
             'telepon' => '081234567890',
             'alamat' => 'Jl. petugas',
         ]);
